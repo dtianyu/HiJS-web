@@ -1,0 +1,45 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-9 col-md-9 col-sm-7 left">  
+            <div class="row">
+                <div class="col-md-7">
+                    <h4><strong class="text-primary">搜索 </strong><input class="searchBar" ng-model="query"/></h4>
+                </div>
+                <div class="col-md-5">
+                    <h4>
+                        <strong class="text-primary">排序 </strong><small>
+                            <input type="radio" ng-model="orderProp" value="index" class="orderProp"/>人气
+                            <input type="radio" ng-model="orderProp" value="rjxf" class="orderProp"/>人均消费
+                            <input type="radio" ng-model="orderProp" value="name" class="orderProp"/>名称
+                        </small>
+                    </h4>          
+                </div>
+            </div>
+            <ul>
+                <li ng-repeat="shop in shops| filter:query | orderBy:orderProp" style="float: left;padding: 2px;">
+                    <div class="shopProfile">
+                        <div class="thumbnail">
+                            <img src="app/img/41891491_m.jpg" alt="123">                                
+                        </div>
+                        <div class="caption">
+                            <h5>
+                                <a href="#/shops/{{shop.id}}">{{shop.name}}</a>                              
+                            </h5>
+                            <p>  
+                                <span class="content-rank-stars content-stars-{{shop.hot}}"></span><br>
+                                <span class="title">人均消费:</span><strong>{{shop.rjxf}}</strong>元<br>
+                                <span class="title">特色:</span>{{shop.tese}}<br>
+                                <span class="label label-primary">{{shop.huodong}}</span>
+                            </p>   
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="col-lg-9 col-md-3 col-sm-5 right">
+            Your name: <input type="text" ng-model="yourname" placeholder="World">
+            <hr>
+            Hello {{yourname|| 'World'}}!
+        </div>
+    </div>
+</div>

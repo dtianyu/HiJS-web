@@ -1,0 +1,90 @@
+[
+    {
+        "id": "sxdxm_xaj",
+        "name": "山西刀削面",
+        "address": "新安街",
+        "caixi": "点心",
+        "rjxf": 20,
+        "tese": "牛肉刀削面",
+        "huodong": "",
+        "hot": 40,
+        "index": 100
+    },
+    {
+        "id": "xlxct_lxl",
+        "name": "新罗星餐厅",
+        "address": "罗星路",
+        "caixi": "点心",
+        "rjxf": 10,
+        "tese": "热炒、羊排",
+        "huodong": "",
+        "hot": 40,
+        "index": 100
+    },
+    {
+        "id": "qlxht_gyl",
+        "name": "千里香馄饨",
+        "address": "公园路",
+        "caixi": "点心",
+        "rjxf": 30,
+        "tese": "",
+        "huodong": "买22只小馄饨，送5只",
+        "hot": 40,
+        "index": 100
+    },
+    {
+        "id": "sxsy_nyl",
+        "name": "绍兴酥鱼",
+        "address": "南于路",
+        "caixi": "热菜",
+        "rjxf": 30,
+        "tese": "爆鱼",
+        "huodong": "",
+        "hot": 40,
+        "index": 100
+    },
+    {
+        "id": "klx_wsl",
+        "name": "快乐享",
+        "address": "文商路",
+        "caixi": "中式快餐",
+        "rjxf": 20,
+        "tese": "香肠｜豆浆",
+        "huodong": "满30元送5元",
+        "hot": 40,
+        "index": 100
+    },
+    {
+        "id": "lsc_waj",
+        "name": "老盛昌",
+        "address": "万安街",
+        "caixi": "小吃",
+        "rjxf": 18,
+        "tese": "苏州汤包｜鲜肉包",
+        "huodong": "",
+        "hot": 30,
+        "index": 50
+    },
+    {
+        "id": "xydb_waj1",
+        "name": "新亚大包",
+        "address": "万安街",
+        "caixi": "中式快餐",
+        "rjxf": 40,
+        "tese": "新亚大包｜小馄饨｜油条",
+        "huodong": "满60元送5元",
+        "hot": 45,
+        "index": 99
+    },
+    {
+        "id": "klx_wsl",
+        "name": "快乐享",
+        "address": "文商路",
+        "caixi": "中式快餐",
+        "rjxf": 20,
+        "tese": "香肠｜豆浆",
+        "huodong": "满30元送5元",
+        "hot": 40,
+        "index": 100
+    }
+]
