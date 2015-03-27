@@ -2,10 +2,10 @@
 
 /* Controllers */
 
-var ShopController = ['$scope', '$routeParams', 'Shop', '$http', function ($scope, $routeParams, Shop, $http) {
+var ShopController = ['$scope', '$routeParams', 'Shop', '$http', 'MeiShiFilter', function ($scope, $routeParams, Shop, $http, MeiShiFilter) {
         var key = "cn.lightshell.cate.cart";
         var url_customerorder = "http://ar.hanbell.com.cn:8480/RESTWebService/webresources/entity.customerorder";
-
+        $scope.meiShiFilter = MeiShiFilter;
         $scope.shop;
         $scope.shops = Shop.query();
         if ($routeParams.shopId !== undefined) {
@@ -122,4 +122,26 @@ var ShopController = ['$scope', '$routeParams', 'Shop', '$http', function ($scop
     }];
 
 
+var MeiShiFilterController = ['$scope', 'MeiShiFilter', function ($scope, MeiShiFilter) {
+        $scope.meiShiFilter = MeiShiFilter;
 
+        $scope.filterCatelog = function (filter) {
+            if ($scope.meiShiFilter.filterDetail.caixi === undefined) {
+                $scope.meiShiFilter.filterDetail.caixi = [];
+            }
+            $scope.meiShiFilter.filterDetail.caixi.push(filter);
+            if ($scope.meiShiFilter.filters === undefined) {
+                $scope.meiShiFilter.filters = [];
+            }
+            $scope.meiShiFilter.filters.push({"key": "菜系", "value": filter});
+            alert($scope.meiShiFilter.filters);
+        };
+
+        $scope.removefilterCatelog = function (Object) {
+            
+            $scope.meiShiFilter.filters.pop(Object);
+            $scope.meiShiFilter.filterDetail.caixi.pop(Object.value);
+            
+        };
+
+    }];

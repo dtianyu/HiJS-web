@@ -1,23 +1,48 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-9 col-md-9 col-sm-7 left">  
-            <div class="row">
-                <div class="col-md-7">
-                    <h4><strong class="text-primary">搜索 </strong><input class="searchBar" ng-model="query"/></h4>
-                </div>
-                <div class="col-md-5">
-                    <h4>
-                        <strong class="text-primary">排序 </strong><small>
+            <div class="container" ng-controller="MeiShiFilterController" style="margin-bottom: 20px;">
+                <div class="row" style=" padding-top: 5px;padding-bottom: 5px;">
+                    <div class="col-md-1 text-right">
+                        <a class="text-primary ">搜索</a> 
+                    </div>
+                    <div class="col-md-5" >
+                        <input class="searchBar"  ng-model="meiShiFilter.searchText"/>
+                    </div>
+                    <div class="col-md-5">
+                        <span class="text-primary ">搜索</span><small>
                             <input type="radio" ng-model="orderProp" value="index" class="orderProp"/>人气
                             <input type="radio" ng-model="orderProp" value="rjxf" class="orderProp"/>人均消费
                             <input type="radio" ng-model="orderProp" value="name" class="orderProp"/>名称
-                        </small>
-                    </h4>          
+                        </small>     
+                    </div>            
                 </div>
+                <div class="row" style=" padding-top: 5px;padding-bottom: 5px;">
+                    <div class="col-md-1 text-right">
+                        <a class="text-primary ">已筛选</a> 
+                    </div>
+                    <div class="col-md-11" >
+                        <li style="float: left" ng-repeat="f in meiShiFilter.filters">
+                            <a ng-click="removefilterCatelog(f);">{{f.key}}:{{f.value}}</a>
+                        </li>
+                    </div>
+                </div>
+                <div class="row" style=" padding-top: 5px;padding-bottom: 5px;">
+                    <div class="col-md-1 text-right">
+                        <a class="">类别</a> 
+                    </div>
+                    <div class="col-md-11">
+                        <ul>
+                            <li style="float: left" ng-repeat="c in  ['小吃', '中式快餐', '点心', '生活百科']">
+                                <a ng-click="filterCatelog(c);">{{c}}</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div> 
             </div>
             <ul>
-                <li ng-repeat="shop in shops| filter:query | orderBy:orderProp" style="float: left;padding: 2px;">
-                    <div class="shopProfile">
+                <li ng-repeat="shop in shops| filter: meiShiFilter.filterDetail | orderBy:orderProp" style="float: left;padding: 2px;">
+                    <div class="profile">
                         <div class="thumbnail">
                             <img src="app/img/41891491_m.jpg" alt="123">                                
                         </div>
@@ -36,7 +61,7 @@
                 </li>
             </ul>
         </div>
-        <div class="col-lg-9 col-md-3 col-sm-5 right">
+        <div class="col-lg-3 col-md-3 col-sm-5 right">
             Your name: <input type="text" ng-model="yourname" placeholder="World">
             <hr>
             Hello {{yourname|| 'World'}}!
