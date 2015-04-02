@@ -20,4 +20,17 @@ appService.factory('MeiShiFilter', function () {
         filters: [],
         searchText: ''
     };
-});        
+});
+
+appService.factory('Weather', ['$http', function ($http) {
+        var url = "http://www.weather.com.cn/adat/cityinfo/101020700.html";
+        return {
+            query: function (city, $scope) {
+               return  $http.get(url).success(function (response) {
+                    alert(response);
+                }).error(function () {
+                    alert("获取资料失败");
+                });
+            }
+        };
+    }]);

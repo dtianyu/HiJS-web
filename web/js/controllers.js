@@ -2,10 +2,11 @@
 
 /* Controllers */
 
-var ShopController = ['$scope', '$routeParams', 'Shop', '$http', 'MeiShiFilter', function ($scope, $routeParams, Shop, $http, MeiShiFilter) {
+var ShopController = ['$scope', '$routeParams', 'Shop', '$http', 'MeiShiFilter', 'Weather', function ($scope, $routeParams, Shop, $http, MeiShiFilter, Weather) {
         var key = "cn.lightshell.cate.cart";
         var url_customerorder = "http://ar.hanbell.com.cn:8480/RESTWebService/webresources/entity.customerorder";
-        $scope.meiShiFilter = MeiShiFilter;
+
+        $scope.doFilter = MeiShiFilter;
         $scope.shop;
         $scope.shops = Shop.query();
         if ($routeParams.shopId !== undefined) {
@@ -119,29 +120,31 @@ var ShopController = ['$scope', '$routeParams', 'Shop', '$http', 'MeiShiFilter',
             saveCart();
             getTotal();
         }
+
+        Weather.query("101020700", $scope);
     }];
 
 
 var MeiShiFilterController = ['$scope', 'MeiShiFilter', function ($scope, MeiShiFilter) {
-        $scope.meiShiFilter = MeiShiFilter;
+        $scope.doFilter = MeiShiFilter;
 
         $scope.filterCatelog = function (filter) {
-            if ($scope.meiShiFilter.filterDetail.caixi === undefined) {
-                $scope.meiShiFilter.filterDetail.caixi = [];
+            if ($scope.doFilter.filterDetail.caixi === undefined) {
+                $scope.doFilter.filterDetail.caixi = [];
             }
-            $scope.meiShiFilter.filterDetail.caixi.push(filter);
-            if ($scope.meiShiFilter.filters === undefined) {
-                $scope.meiShiFilter.filters = [];
+            $scope.doFilter.filterDetail.caixi.push(filter);
+            if ($scope.doFilter.filters === undefined) {
+                $scope.doFilter.filters = [];
             }
-            $scope.meiShiFilter.filters.push({"key": "菜系", "value": filter});
-            alert($scope.meiShiFilter.filters);
+            $scope.doFilter.filters.push({"key": "菜系", "value": filter});
+            alert($scope.doFilter.filters);
         };
 
         $scope.removefilterCatelog = function (Object) {
-            
-            $scope.meiShiFilter.filters.pop(Object);
-            $scope.meiShiFilter.filterDetail.caixi.pop(Object.value);
-            
+
+            $scope.doFilter.filters.pop(Object);
+            $scope.doFilter.filterDetail.caixi.pop(Object.value);
+
         };
 
     }];

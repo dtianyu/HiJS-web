@@ -7,7 +7,7 @@
                         <a class="text-primary ">搜索</a> 
                     </div>
                     <div class="col-md-5" >
-                        <input class="searchBar"  ng-model="meiShiFilter.searchText"/>
+                        <input class="searchBar"  ng-model="doFilter.searchText"/>
                     </div>
                     <div class="col-md-5">
                         <span class="text-primary ">搜索</span><small>
@@ -22,7 +22,7 @@
                         <a class="text-primary ">已筛选</a> 
                     </div>
                     <div class="col-md-11" >
-                        <li style="float: left" ng-repeat="f in meiShiFilter.filters">
+                        <li style="float: left" ng-repeat="f in doFilter.filters">
                             <a ng-click="removefilterCatelog(f);">{{f.key}}:{{f.value}}</a>
                         </li>
                     </div>
@@ -41,7 +41,7 @@
                 </div> 
             </div>
             <ul>
-                <li ng-repeat="shop in shops| filter: meiShiFilter.filterDetail | orderBy:orderProp" style="float: left;padding: 2px;">
+                <li ng-repeat="shop in shops| filter: doFilter.filterDetail | orderBy:orderProp" style="float: left;padding: 2px;">
                     <div class="profile">
                         <div class="thumbnail">
                             <img src="app/img/41891491_m.jpg" alt="123">                                
