@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-var ShopController = ['$scope', '$routeParams', 'Shop', '$http', 'MeiShiFilter', 'Weather', function ($scope, $routeParams, Shop, $http, MeiShiFilter, Weather) {
+var ShopController = ['$scope', '$routeParams', 'Shop', '$http', 'MeiShiFilter', function ($scope, $routeParams, Shop, $http, MeiShiFilter) {
         var key = "cn.lightshell.cate.cart";
         var url_customerorder = "http://ar.hanbell.com.cn:8480/RESTWebService/webresources/entity.customerorder";
 
@@ -121,7 +121,7 @@ var ShopController = ['$scope', '$routeParams', 'Shop', '$http', 'MeiShiFilter',
             getTotal();
         }
 
-        Weather.query("101020700", $scope);
+        Weather.query("101020700", "index_v", $scope);
     }];
 
 
@@ -141,7 +141,6 @@ var MeiShiFilterController = ['$scope', 'MeiShiFilter', function ($scope, MeiShi
         };
 
         $scope.removefilterCatelog = function (Object) {
-
             $scope.doFilter.filters.pop(Object);
             $scope.doFilter.filterDetail.caixi.pop(Object.value);
 

@@ -5,15 +5,14 @@
  */
 
 var home_url = "http://ar.hanbell.com.cn:8480/RESTWebService/webresources";
-
 var appService = angular.module('appService', ['ngResource']);
+
 
 appService.factory('Shop', function ($resource) {
     return $resource("app/meishi/:shopId.json", {}, {
         query: {method: "GET", params: {shopId: "shops"}, isArray: true}
     });
 });
-
 appService.factory('MeiShiFilter', function () {
     return{
         filterDetail: {},
@@ -21,16 +20,32 @@ appService.factory('MeiShiFilter', function () {
         searchText: ''
     };
 });
-
-appService.factory('Weather', ['$http', function ($http) {
-        var url = "http://www.weather.com.cn/adat/cityinfo/101020700.html";
-        return {
-            query: function (city, $scope) {
-               return  $http.get(url).success(function (response) {
-                    alert(response);
-                }).error(function () {
-                    alert("获取资料失败");
-                });
-            }
-        };
-    }]);
+//appService.factory('Weather', ['$http', 'SmartWeatherAPI', function ($http, SmartWeatherAPI) {
+//        var url = " http://localhost:8480/RESTWebService/webresources/comm.weather/101020700/index_v";
+//        return {
+//            query: function (areaid, type, $scope) {
+//                return  $http.get(url).success(function (response) {
+//                    $scope.weather = response;
+//                    //alert($scope.weather.url);
+//                    SmartWeatherAPI.query($scope.weather.url, $scope);
+//                }).error(function () {
+//                    alert("获取资料失败");
+//                });
+//            }
+//        };
+//    }]);
+//
+//appService.factory('SmartWeatherAPI', ['$http', function ($http) {
+//        return {
+//            query: function (url, $scope) {
+//                alert(url);
+//                $http.get(url, {headers: {'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Credentials': 'true'}, dataType: 'json'})
+//                        .success(function (data) {
+//                            alert(data);
+//                        })
+//                        .error(function () {
+//                            alert("$http获取资料失败，请重试！");
+//                        });
+//            }
+//        };
+//    }]);
