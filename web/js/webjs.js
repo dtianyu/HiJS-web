@@ -21,25 +21,31 @@ $(document).ready(function () {
 //            alert(data);
 //        });
 //    });
-
+//$(".search_form .search_title").click(function())
 
 });
+
+function searchTitleClick(type) {
+    alert(type);
+    $(".search_form > form")[0].myselectvalue.value = type;
+}
 //Baidu搜索
 function gowhere1(formname) {
     var url;
+    alert(formname.myselectvalue.value);
     if (formname.myselectvalue.value == "0") {
         url = "http://www.baidu.com/baidu";
         document.search_form1.tn.value = "baidu";
         formname.method = "get";
     }
-    if (formname.myselectvalue.value == "1") {
+    if (formname.myselectvalue.value === "1") {
         url = "http://mp3.baidu.com/m";
         document.search_form1.tn.value = "baidump3";
         document.search_form1.ct.value = "134217728";
         document.search_form1.lm.value = "-1";
     }
 
-    if (formname.myselectvalue.value == "4") {
+    if (formname.myselectvalue.value === "4") {
         document.search_form1.tn.value = "news";
         document.search_form1.cl.value = "2";
         document.search_form1.rn.value = "20";

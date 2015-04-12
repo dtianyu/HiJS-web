@@ -32,88 +32,52 @@ and open the template in the editor.
                     </div>
                 </nav>
             </div>
-            <div id="topSearchBar" style="margin-bottom: 20px">
+            <div id="topTool" style="margin-bottom: 20px">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-7">
-                            <form onsubmit="return gowhere1(this)" target="_blank" name="search_form1" method="get" action="http://www.baidu.com/baidu">
-                                <table width="100%" height="80" cellspacing="0" cellpadding="0" border="0" style="font-family:宋体">
-                                    <tbody><tr>
-                                            <td>
-                                                <table width="100%" height="80" cellspacing="0" cellpadding="0" border="0">
-                                                    <input type="hidden" value="0" name="myselectvalue">
-                                                    <input type="hidden" value="utf-8" name="ie">
-                                                    <input type="hidden" name="tn" value="baidu">
-                                                    <input type="hidden" name="ct">
-                                                    <input type="hidden" name="lm">
-                                                    <input type="hidden" name="cl">
-                                                    <input type="hidden" name="rn">
-                                                    <tbody><tr>
-                                                            <td width="8%" valign="bottom" style="margin-right: 20px;width: 200px;">
-                                                                <div align="center">
-                                                                    <a href="http://www.baidu.com/">
-                                                                        <img border="0" align="bottom" alt="Baidu" src="http://img.baidu.com/img/logo-80px.gif">
-                                                                    </a>
-                                                                </div>
-                                                            </td>
-                                                            <td width="92%" valign="bottom">
-                                                                <input type="radio" value="0" onclick="javascript:this.form.myselectvalue.value = 4;" name="myselect">
-                                                                <font color="#0000cc">
-                                                                新闻
-                                                                </font>
-                                                                <input type="radio" value="0" onclick="javascript:this.form.myselectvalue.value = 0;" name="myselect" checked="">
-                                                                <span class="f12">
-                                                                    <font color="#0000cc">
-                                                                    网页
-                                                                    </font>
-                                                                </span>
-                                                                <input type="radio" value="1" onclick="javascript:this.form.myselectvalue.value = 1;" name="myselect">
-                                                                <span class="f12">
-                                                                    <font color="#0000cc">
-                                                                    音乐
-                                                                    </font>
-                                                                </span>
-                                                                <input type="radio" value="0" onclick="javascript:this.form.myselectvalue.value = 6;" name="myselect">
-                                                                <font color="#0000cc">
-                                                                贴吧
-                                                                </font>
-                                                                <input type="radio" value="0" onclick="javascript:this.form.myselectvalue.value = 5;" name="myselect">
-                                                                <font color="#0000cc">
-                                                                图片
-                                                                </font>
-
-                                                                <table width="100%" cellspacing="0" cellpadding="0" border="0" align="right">
-                                                                    <tbody>
-                                                                        <tr>
-                                                                            <td style="padding-top:10px;">
-                                                                                <font>
-                                                                                <input size="40" name="word" id="word">
-                                                                                </font>
-                                                                                <input  type="submit" value="百度一下">
-
-                                                                            </td>
-                                                                            <td>
-                                                                                <br>
-                                                                            </td>
-                                                                        </tr>
-                                                                    </tbody></table>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td width="8%"></td>
-                                                            <td width="92%"></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                            </td></tr>
-                                                    </tbody></table>
-                                            </td>
-                                        </tr>
-                                    </tbody></table>
-                            </form>
+                            <div class="search_form">
+                                <form  target="_blank" name="search_form1" method="get" action="http://www.baidu.com/baidu">
+                                    <input type="hidden" value="0" name="myselectvalue">
+                                    <input type="hidden" value="utf-8" name="ie">
+                                    <input type="hidden" name="tn" value="baidu">
+                                    <input type="hidden" name="ct">
+                                    <input type="hidden" name="lm">
+                                    <input type="hidden" name="cl">
+                                    <input type="hidden" name="rn">
+                                    <div align="center" class="search_logo">
+                                        <a href="http://www.baidu.com/">
+                                            <img border="0" align="bottom" alt="Baidu" src="http://img.baidu.com/img/logo-80px.gif">
+                                        </a>
+                                    </div>                             
+                                    <div class="search_content">
+                                        <ul>
+                                            <li>
+                                                <a class="search_title" onclick="javascript:this.form.myselectvalue.value = 4;" name="myselect">新闻</a>
+                                            </li>
+                                            <li>
+                                                <a  class="search_title" onclick="javascript:this.form.myselectvalue.value = 0;" name="myselect">网页</a>
+                                            </li>
+                                            <li>
+                                                <a  class="search_title"  onclick="searchTitleClick(1);" name="myselect">音乐</a>
+                                            </li>
+                                            <li>
+                                                <a  class="search_title" onclick="javascript:this.form.myselectvalue.value = 6;" name="myselect">贴吧</a>
+                                            </li>
+                                            <li>
+                                                <a  class="search_title" onclick="javascript:this.form.myselectvalue.value = 5;" name="myselect">图片</a>
+                                            <li>
+                                        </ul>
+                                        <span >
+                                            <input  name="word" id="word" class="search_input">
+                                            <input type="submit" value="百度一下" class="search_submit">                                       
+                                        </span>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                         <div class="col-md-5">
-                            <iframe allowtransparency="true" frameborder="0" width="385" height="76" scrolling="no" src="http://tianqi.2345.com/plugin/widget/index.htm?s=1&z=1&t=0&v=0&d=3&bd=0&k=000000&f=&q=1&e=1&a=1&c=58362&w=385&h=76&align=left"></iframe>
+                            <iframe allowtransparency="true" frameborder="0" width="385" height="96" scrolling="no" src="http://tianqi.2345.com/plugin/widget/index.htm?s=1&z=1&t=0&v=0&d=3&bd=0&k=000000&f=&q=1&e=1&a=1&c=58362&w=385&h=96&align=left"></iframe>
                         </div>
                     </div>
                 </div>
