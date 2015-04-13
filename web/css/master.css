@@ -7,12 +7,11 @@ li{
     padding-top: 3px;    
 }
 
-#topNav{
-    margin:  auto;
-    background-color: #DD4814;  
+#topSearch{
+
 }
 
-#topTool{
+#topNav{
 
 }
 
@@ -30,24 +29,26 @@ li{
 .search_form{
     display: block;
     width: 100%;
-    height: 96px;
+    height: 76px;
     padding-left: 20px;
 }
 
 .search_logo{
     float: left;
-    width: 100px;
-    height: 100%;
-    margin: 40px 10px 0px 20px;
+    width: 10%;
+    height: 100%;  
+    min-width: 100px;
+    margin: 30px 10px 0px 20px;
     border: 0px none;
     outline: 0px none;
 }
 
 .search_content{
-    width: 620px;  
+    display: block;
+    width: 100%;  
 }
 
-.search_content ul{
+/*.search_content ul{
     display: block;
     height: 22px;
     padding-top: 10px;
@@ -66,22 +67,23 @@ li{
 
 .search_content a.search_title:hover{
     color: #DD4802;
-}
+}*/
 
 .search_input{
-    width:380px;
+    width:72%;
     height:36px; 
-    font: 16px/18px arial;
-    margin: 40px 0px 0px 7px;
-    padding: 0px;
+    margin: 30px 0px 0px 7px;
+    font: 16px/18px arial;    
     background: none repeat scroll 0% 0% transparent;
     border:#0000cc 1px solid;
     outline: 0px none;
+
 }
 
 .search_submit{
-    width: 90px;
+    width: 10%;
     height:36px; 
+    min-width: 90px;
     color: white;
     background:no-repeat scroll 0% 0% #3385FF;
     border: none;

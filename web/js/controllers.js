@@ -147,3 +147,8 @@ var MeiShiFilterController = ['$scope', 'MeiShiFilter', function ($scope, MeiShi
         };
 
     }];
+
+var WebShortcutsController = ['$scope', 'WebShortcuts', function ($scope, WebShortcuts) {
+        $scope.webshortcuts;
+        WebShortcuts.quert($scope);
+    }];

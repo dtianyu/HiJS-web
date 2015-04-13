@@ -24,20 +24,23 @@ and open the template in the editor.
     <body>
         <div id="top">
             <div id="topInfo">
-            </div>
-            <div id="topNav">
-                <nav class="container navbar navbar-default" role="navigation">
-                    <div class="navbar-header">
-                        <a class="navbar-brand" href="#"><strong></strong></a> 
+                <div  class="container">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            <img src="img/logo-big.png" alt="嗨金山"/>
+                        </div> 
+                        <div class="col-md-6 col-sm-6">
+                            <iframe allowtransparency="true" frameborder="0" width="385" height="96" scrolling="no" src="http://tianqi.2345.com/plugin/widget/index.htm?s=1&z=1&t=0&v=0&d=3&bd=0&k=000000&f=&q=1&e=1&a=1&c=58362&w=385&h=96&align=left"></iframe>
+                        </div>
                     </div>
-                </nav>
+                </div>     
             </div>
-            <div id="topTool" style="margin-bottom: 20px">
+            <div id="topSearch">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-7">
+                        <div  class="col-md-9 col-sm-7">
                             <div class="search_form">
-                                <form target="_blank" name="search_form1" method="get" action="http://www.baidu.com/baidu">
+                                <form name="search_form1" method="get" action="http://www.baidu.com/baidu" target="_blank" >
                                     <input type="hidden" value="0" name="myselectvalue">
                                     <input type="hidden" value="utf-8" name="ie">
                                     <input type="hidden" name="tn" value="baidu">
@@ -56,24 +59,36 @@ and open the template in the editor.
                                             <input type="submit" value="百度一下" class="search_submit">                                       
                                         </span>
                                     </div>
-                                </form>
-                            </div>
+                                </form>    
+                            </div> 
                         </div>
-                        <div class="col-md-5">
-                            <iframe allowtransparency="true" frameborder="0" width="385" height="96" scrolling="no" src="http://tianqi.2345.com/plugin/widget/index.htm?s=1&z=1&t=0&v=0&d=3&bd=0&k=000000&f=&q=1&e=1&a=1&c=58362&w=385&h=96&align=left"></iframe>
-                        </div>
+                        <div  class="col-md-3 col-sm-5"></div>
                     </div>
                 </div>
-            </div>           
-        </div> 
-        <div  class="container">
-            <div class="row">
-                <div id="container" class="col-md-9 col-sm-7" ng-view></div> 
-                <div id="sideBar" class="col-md-3 col-sm-5"></div>
             </div>
-        </div> 
-        <div id="bottom" class="container navbar-fixed-bottom">
+        </div>            
+        <div id="topNav">
+                <div class="container">
+                    <div class="row">
+                        <div  class="col-md-9 col-sm-7">
+                            <ul class="webshortcuts">
+                                
+                            </ul>
+                        </div>
+                        <div  class="col-md-3 col-sm-5"></div>
+                    </div>
+                </div>
+        </div>
 
-        </div> 
-    </body>
+    </div> 
+    <div  class="container">
+        <div class="row">
+            <div id="container" class="col-md-9 col-sm-7" ng-view></div> 
+            <div id="sideBar" class="col-md-3 col-sm-5"></div>
+        </div>
+    </div> 
+    <div id="bottom" class="container navbar-fixed-bottom">
+
+    </div> 
+</body>
 </html>
