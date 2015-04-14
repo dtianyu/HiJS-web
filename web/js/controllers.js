@@ -121,14 +121,14 @@ var ShopController = ['$scope', '$routeParams', 'Shop', '$http', 'MeiShiFilter',
             getTotal();
         }
 
-        Weather.query("101020700", "index_v", $scope);
+//        Weather.query("101020700", "index_v", $scope);
     }];
 
 
 var MeiShiFilterController = ['$scope', 'MeiShiFilter', function ($scope, MeiShiFilter) {
         $scope.doFilter = MeiShiFilter;
 
-        $scope.filterCatelog = function (filter) {
+        $scope.addFilterCategory = function (filter) {
             if ($scope.doFilter.filterDetail.caixi === undefined) {
                 $scope.doFilter.filterDetail.caixi = [];
             }
@@ -140,7 +140,7 @@ var MeiShiFilterController = ['$scope', 'MeiShiFilter', function ($scope, MeiShi
             alert($scope.doFilter.filters);
         };
 
-        $scope.removefilterCatelog = function (Object) {
+        $scope.removeFilterCategory = function (Object) {
             $scope.doFilter.filters.pop(Object);
             $scope.doFilter.filterDetail.caixi.pop(Object.value);
 
