@@ -23,7 +23,7 @@
                     </div>
                     <div class="col-md-11" >
                         <li style="float: left" ng-repeat="f in doFilter.filters">
-                            <a ng-click="removeFilterCatelog(f);">{{f.key}}:{{f.value}}</a>
+                            <a ng-click="removeFilterCategory(f);">{{f.key}}:{{f.value}}</a>
                         </li>
                     </div>
                 </div>
@@ -34,7 +34,7 @@
                     <div class="col-md-11">
                         <ul>
                             <li style="float: left" ng-repeat="c in  ['小吃', '中式快餐', '点心', '生活百科']">
-                                <a ng-click="addFilterCatelog(c);">{{c}}</a>
+                                <a ng-click="addFilterCategory(c);">{{c}}</a>
                             </li>
                         </ul>
                     </div>

@@ -4,15 +4,18 @@
  * and open the template in the editor.
  */
 
-var home_url = "http://ar.hanbell.com.cn:8480/HiJSRESTful/webresources";
+var home_url = "http://127.0.0.1:8480/HiJSRESTful/webresources";
+var home_api = "app/data";
+
 var appService = angular.module('appService', ['ngResource']);
 
 
 appService.factory('Shop', function ($resource) {
-    return $resource("app/meishi/:shopId.json", {}, {
+    return $resource("app/data/meishi/:shopId.json", {}, {
         query: {method: "GET", params: {shopId: "shops"}, isArray: true}
     });
 });
+
 appService.factory('MeiShiFilter', function () {
     return{
         filterDetail: {},
@@ -21,19 +24,12 @@ appService.factory('MeiShiFilter', function () {
     };
 });
 
-appService.factory('WebShortcuts', ['$http', function ($http) {
-        return {
-            query: function ($scope) {
-                var url = home_url + '/entity.webshortcut';
-                return $http.get(url).success(function (response) {
-                    $scope.webshortcuts = response;
-                }).error(function () {
-                    alert("获取资料失败");
-                });
-            }
-        };
-    }]);
-
+appService.factory('WebLinks', function ($resource) {
+    return $resource("app/data/weblinks/:linkId.json", {}, {
+        links: {method: "GET", params: {linkId: "weblinks"}, isArray: true},
+        shortcuts: {method: "GET", params: {linkId: "webshortcuts"}, isArray: true}
+    });
+});
 
 
 //appService.factory('Weather', ['$http', 'SmartWeatherAPI', function ($http, SmartWeatherAPI) {

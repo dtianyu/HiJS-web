@@ -1,9 +1,15 @@
 'use strict';
 
 /* Controllers */
+var key = "cn.lightshell.cate.cart";
 
-var ShopController = ['$scope', '$routeParams', 'Shop', '$http', 'MeiShiFilter', function ($scope, $routeParams, Shop, $http, MeiShiFilter) {
-        var key = "cn.lightshell.cate.cart";
+var ShopController = ['$scope', '$routeParams', '$location', 'Shop', 'MeiShiFilter', function ($scope, $routeParams, $location, Shop, MeiShiFilter) {
+
+
+        $scope.findMore = function (path) {
+            $location.path(path);
+        };
+
         var url_customerorder = "http://ar.hanbell.com.cn:8480/RESTWebService/webresources/entity.customerorder";
 
         $scope.doFilter = MeiShiFilter;
@@ -143,12 +149,11 @@ var MeiShiFilterController = ['$scope', 'MeiShiFilter', function ($scope, MeiShi
         $scope.removeFilterCategory = function (Object) {
             $scope.doFilter.filters.pop(Object);
             $scope.doFilter.filterDetail.caixi.pop(Object.value);
-
         };
 
     }];
 
-var WebShortcutsController = ['$scope', 'WebShortcuts', function ($scope, WebShortcuts) {
-        $scope.webshortcuts;
-        WebShortcuts.query($scope);
+var WebLinksController = ['$scope', 'WebLinks', function ($scope, WebLinks) {
+        $scope.weblinks = WebLinks.links();
+        $scope.webshortcuts = WebLinks.shortcuts();
     }];

@@ -6,13 +6,23 @@ li{
     list-style: none;
     padding-top: 3px;    
 }
+/*-------------------------------网站整体布局*/
+#topHead{
+    margin: auto;
+    display: block;
+    height: 45px;
+    background-color: #dd4814;
+}
+
+#topInfo{
+
+}
 
 #topSearch{
 
 }
 
-#topNav{
-    margin-top: 20px;
+#topSearch{
     margin-bottom: 20px;
 }
 
@@ -21,16 +31,19 @@ li{
 }
 
 #bottom{
-    height: 60px; 
+    margin: auto;
+    height: 55px; 
     background-color: #f5f5f5;   
     border-top:  #DD4814 solid 5px;
     text-align: center;
 }
+/*-------------------------------网站整体布局*/
 
+/*------------------------------百度搜索框*/
 .search_form{
     display: block;
     width: 100%;
-    height: 76px;
+    height: 76px; 
     padding-left: 20px;
 }
 
@@ -71,7 +84,7 @@ li{
 }*/
 
 .search_input{
-    width:72%;
+    min-width:460px;
     height:36px; 
     margin: 30px 0px 0px 7px;
     font: 16px/18px arial;    
@@ -90,41 +103,65 @@ li{
     border: none;
     margin-left: -4px;
 }
+/*------------------------------百度搜索框*/
 
-.webshortcuts{
-    display: block;
-    width: 100%;
+/*------------------------------------------导航信息*/
+#weblinks div.panel,#webshortcuts div.panel{
+    min-height: 182px;
+    border: #DD4814 1px solid;
 }
 
-.webshortcuts li{
-    width: 117px;
-    height: 30px;
+.weblinks,.webshortcuts{
+    display: inline-block;
+}
+
+.weblinks li,.webshortcuts li{
     float: left;
+}
+
+.weblinks li{
+    width: 118px;
+    height: 30px;
     text-align: center;
 }
 
-.webshortcuts li a{
+.webshortcuts li{
+    width: 125px;
+    height: 45px; 
+    text-align: left;
+}
+
+.weblinks li a,.webshortcuts li a{
     display: inline-block;
-    width: 107px;
-    height: 26px;
     color: black;
     text-decoration: none;
 }
 
-.webshortcuts li a:hover{
+.weblinks li a{
+    width: 107px;
+    height: 26px; 
+}
+
+.weblinks li a:hover{
     color:#dd4814;
     border: 1px solid #AAD4FA;
     background-color: #EAF4FE;
 }
 
-.webshortcuts li a img{
-    width: 29px;
-    height: 20px;
+.webshortcuts li img{
+    width: 60px;
+    height: 42px; 
+    padding: 2px;
 }
 
-.searchBar{
-    width: 75%;
+.webshortcuts li span{
+    font-size: 15px;
 }
+
+.weblinks li a img{
+    height: 20px;
+}
+/*------------------------------------------导航信息*/
 
 #cart-detail{
     width: 100%;
