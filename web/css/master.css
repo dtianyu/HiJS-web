@@ -6,6 +6,15 @@ li{
     list-style: none;
     padding-top: 3px;    
 }
+
+.right{
+    float: right;
+}
+
+.left{
+    float: left;
+}
+
 /*-------------------------------网站整体布局*/
 #topHead{
     margin: auto;

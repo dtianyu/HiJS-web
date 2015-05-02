@@ -8,9 +8,11 @@ var app = angular.module('jsApp', ['appService']);
 
 app.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.
-                when('/main', {templateUrl: 'partials/main.html', controller: ShopController}).
-                when('/meishi', {templateUrl: 'partials/meishi-list.html', controller: ShopController}).
-                when('/meishi/:shopId', {templateUrl: 'partials/meishi-detail.html', controller: ShopController}).
+                when('/main', {templateUrl: 'partials/main.html', controller: MainController}).
+                when('/cate', {templateUrl: 'partials/cate-list.html', controller: CateController}).
+                when('/cate/:Id', {templateUrl: 'partials/cate-detail.html', controller: CateController}).
+                when('/help', {templateUrl: 'partials/help-list.html', controller: HelpController}).
+                when('/help/:Id', {templateUrl: 'partials/help-detail.html', controller: HelpController}).
                 otherwise({redirectTo: 'main'});
     }]);
 
@@ -22,6 +24,7 @@ app.directive("showtab",
                     element.click(function (e) {
                         e.preventDefault();
                         $(element).tab('show');
+                        $(element).addClass("active");
                     });
                 }
             };

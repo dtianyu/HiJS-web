@@ -10,13 +10,14 @@ var home_api = "app/data";
 var appService = angular.module('appService', ['ngResource']);
 
 
-appService.factory('Shop', function ($resource) {
-    return $resource("app/data/meishi/:shopId.json", {}, {
-        query: {method: "GET", params: {shopId: "shops"}, isArray: true}
+appService.factory('Cate', function ($resource) {
+    return $resource("app/data/cate/:Id.json", {}, {
+        query: {method: "GET", params: {Id: "shops"}, isArray: true},
+        top: {method: "GET", params: {Id: "tops"}, isArray: true}
     });
 });
 
-appService.factory('MeiShiFilter', function () {
+appService.factory('CateFilter', function () {
     return{
         filterDetail: {},
         filters: [],
@@ -24,10 +25,17 @@ appService.factory('MeiShiFilter', function () {
     };
 });
 
+appService.factory('Help', function ($resource) {
+    return $resource("app/data/help/:Id.json", {}, {
+        query: {method: "GET", params: {Id: "shops"}, isArray: true},
+        top: {method: "GET", params: {Id: "tops"}, isArray: true}
+    });
+});
+
 appService.factory('WebLinks', function ($resource) {
-    return $resource("app/data/weblinks/:linkId.json", {}, {
-        links: {method: "GET", params: {linkId: "weblinks"}, isArray: true},
-        shortcuts: {method: "GET", params: {linkId: "webshortcuts"}, isArray: true}
+    return $resource("app/data/weblinks/:Id.json", {}, {
+        links: {method: "GET", params: {Id: "weblinks"}, isArray: true},
+        shortcuts: {method: "GET", params: {Id: "webshortcuts"}, isArray: true}
     });
 });
 
