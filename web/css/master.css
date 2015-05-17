@@ -19,7 +19,7 @@ li{
 #topHead{
     margin: auto;
     display: block;
-    height: 45px;
+    height: 30px;
     background-color: #dd4814;
 }
 
@@ -116,12 +116,9 @@ li{
 
 /*------------------------------------------导航信息*/
 #weblinks div.panel,#webshortcuts div.panel{
-    min-height: 182px;
+    height: 182px;
     border: #DD4814 1px solid;
-}
-
-.weblinks,.webshortcuts{
-    display: inline-block;
+    overflow: hidden;
 }
 
 .weblinks li,.webshortcuts li{

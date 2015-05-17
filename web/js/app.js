@@ -17,7 +17,7 @@ app.config(['$routeProvider', function ($routeProvider) {
     }]);
 
 
-app.directive("showtab",
+app.directive("showTab",
         function () {
             return {
                 link: function (scope, element, attrs) {

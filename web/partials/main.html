@@ -38,10 +38,10 @@
         <div id="content">
             <ul id="myTab" class="nav nav-tabs">
                 <li class="active">
-                    <a href="#cateTab" data-toggle="tab">找美食</a>
+                    <a href="#cateTab" data-toggle="tab" show-tab><h5>找美食</h5></a>
                 </li>
                 <li>
-                    <a href="#helpTab" data-toggle="tab">求帮忙</a>
+                    <a href="#helpTab" data-toggle="tab" show-tab><h5>寻帮忙</h5></a>
                 </li>
             </ul>
             <div id="myTabContent" class="tab-content">
@@ -55,19 +55,20 @@
                         </div>
                         <div class="panel-body">
                             <ul>
-                                <li ng-repeat="shop in cateshops " style="float: left;padding: 2px;">
+                                <li ng-repeat="store in catestores" style="float: left;padding: 2px;">
                                     <div class="profile">
                                         <div class="thumbnail">
-                                            <img src="app/img/41891491_m.jpg" alt="123">                                
+                                            <img ng-if="store.logo2" ng-src="app/img/{{store.id}}/{{store.logo2}}" alt="{{store.name}}">
+                                            <img ng-if="!store.logo2" ng-src="app/img/catelogo2.png" alt="{{store.name}}">                                
                                         </div>
                                         <div class="caption">
                                             <h5> 
-                                                <a href="#/cate/{{shop.id}}">{{shop.name}}</a><span class="title">人均消费:</span><strong>{{shop.pcc}}</strong>元<br>                             
+                                                <a href="#/cate/{{store.id}}">{{store.name}}</a><span class="title" ng-if="{{store.pcc}}">人均消费:<strong>{{store.pcc}}</strong>元</span><br>                             
                                             </h5>
                                             <p>  
-                                                <span class="content-rank-stars content-stars-{{shop.hot}}"></span><br>
-                                                <span class="title">特色:</span>{{shop.feature}}<br>
-                                                <span class="label label-primary">{{shop.action}}</span>
+                                                <span class="content-rank-stars content-stars-{{store.hot}}"></span><br>
+                                                <span class="title">特色:</span>{{store.feature}}<br>
+                                                <span class="label label-primary">{{store.action}}</span>
                                             </p>   
                                         </div>
                                     </div>
@@ -80,26 +81,27 @@
                     <div class="panel panel-primary">
                         <div class="panel-heading">
                             <h6 class="panel-title">
-                                <span class="title">住在金山-求帮忙-上金山生活</span>
+                                <span class="title">住在金山-寻帮忙-上金山生活</span>
                                 <button type="button" class="btn btn-xs btn-success right" ng-click="findMore('help')">More</button> 
                             </h6>
                         </div>
                         <div class="panel-body">                
                             <ul>
-                                <li ng-repeat="shop in helpshops " style="float: left;padding: 2px;">
+                                <li ng-repeat="store in helpstores" style="float: left;padding: 2px;">
                                     <div class="profile">
                                         <div class="thumbnail">
-                                            <img src="app/img/41891491_m.jpg" alt="123">                                
+                                            <img ng-if="store.logo2" ng-src="app/img/{{store.id}}/{{store.logo2}}" alt="{{store.name}}">
+                                            <img ng-if="!store.logo2" ng-src="app/img/helplogo2.png" alt="{{store.name}}">
                                         </div>
                                         <div class="caption">
                                             <h5>
-                                                <a href="#/shops/{{shop.id}}">{{shop.name}}</a>                              
+                                                <a href="#/help/{{store.id}}">{{store.name}}</a>                              
                                             </h5>
                                             <p>  
-                                                <span class="content-rank-stars content-stars-{{shop.hot}}"></span><br>
-                                                <span class="title">人均消费:</span><strong>{{shop.rjxf}}</strong>元<br>
-                                                <span class="title">特色:</span>{{shop.tese}}<br>
-                                                <span class="label label-primary">{{shop.huodong}}</span>
+                                                <span class="content-rank-stars content-stars-{{store.hot * 10}}"></span><br>
+                                                <span class="title">人均消费:</span><strong>{{store.pcc}}</strong>元<br>
+                                                <span class="title">专业:</span>{{store.feature}}<br>
+                                                <span class="label label-primary">{{store.action}}</span>
                                             </p>   
                                         </div>
                                     </div>

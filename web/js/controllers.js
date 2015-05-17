@@ -9,8 +9,8 @@ var MainController = ['$scope', '$routeParams', '$location', 'Cate', 'Help', fun
             $location.path(path);
         };
 
-        $scope.cateshops = Cate.top();
-        $scope.helpshops = Help.top();
+        $scope.catestores = Cate.top();
+        $scope.helpstores = Help.top();
     }];
 
 
@@ -21,22 +21,22 @@ var CateController = ['$scope', '$routeParams', '$location', 'Cate', 'CateFilter
         };
 
         $scope.doFilter = CateFilter;
-        $scope.shop;
-        $scope.shops = Cate.query();
+        $scope.store;
+        $scope.stores = Cate.query();
         if ($routeParams.Id !== undefined) {
-            $scope.shop = Cate.get({Id: $routeParams.Id});
+            $scope.store = Cate.get({Id: $routeParams.Id});
         }
         $scope.orderProp = "idx";
-        var shopId = $routeParams.shopId;
+        var storeId = $routeParams.storeId;
         $scope.totalQty = 0;
         $scope.totalAmts = 0;
         $scope.cartItems = loadCart(key);
         getTotal();
         $scope.addToCart = function (item) {
             var flag = true;
-            var o = {"shop": shopId, "name": item.name, "price": item.price, "unit": item.unit, "qty": 1};
+            var o = {"store": storeId, "name": item.name, "price": item.price, "unit": item.unit, "qty": 1};
             angular.forEach($scope.cartItems, function (cartItem) {
-                if (cartItem.shop === o.shop && cartItem.name === o.name) {
+                if (cartItem.store === o.store && cartItem.name === o.name) {
                     cartItem.qty += o.qty;
                     flag = false;
                 }
@@ -147,22 +147,22 @@ var CateDetailController = ['$scope', '$routeParams', '$location', 'Shop', 'Cate
         var url_customerorder = "http://ar.hanbell.com.cn:8480/RESTWebService/webresources/entity.customerorder";
 
         $scope.doFilter = MeiShiFilter;
-        $scope.shop;
-        $scope.shops = Shop.query();
-        if ($routeParams.shopId !== undefined) {
-            $scope.shop = Shop.get({shopId: $routeParams.shopId});
+        $scope.store;
+        $scope.stores = Shop.query();
+        if ($routeParams.storeId !== undefined) {
+            $scope.store = Shop.get({storeId: $routeParams.storeId});
         }
         $scope.orderProp = "index";
-        var shopId = $routeParams.shopId;
+        var storeId = $routeParams.storeId;
         $scope.totalQty = 0;
         $scope.totalAmts = 0;
         $scope.cartItems = loadCart(key);
         getTotal();
         $scope.addToCart = function (item) {
             var flag = true;
-            var o = {"shop": shopId, "name": item.name, "price": item.price, "unit": item.unit, "qty": 1};
+            var o = {"store": storeId, "name": item.name, "price": item.price, "unit": item.unit, "qty": 1};
             angular.forEach($scope.cartItems, function (cartItem) {
-                if (cartItem.shop === o.shop && cartItem.name === o.name) {
+                if (cartItem.store === o.store && cartItem.name === o.name) {
                     cartItem.qty += o.qty;
                     flag = false;
                 }
@@ -295,22 +295,22 @@ var HelpController = ['$scope', '$routeParams', '$location', 'Help', 'HelpFilter
         };
 
         $scope.doFilter = HelpFilter;
-        $scope.shop;
-        $scope.shops = Help.query();
+        $scope.store;
+        $scope.stores = Help.query();
         if ($routeParams.Id !== undefined) {
-            $scope.shop = Help.get({Id: $routeParams.Id});
+            $scope.store = Help.get({Id: $routeParams.Id});
         }
         $scope.orderProp = "index";
-        var shopId = $routeParams.shopId;
+        var storeId = $routeParams.storeId;
         $scope.totalQty = 0;
         $scope.totalAmts = 0;
         $scope.cartItems = loadCart(key);
         getTotal();
         $scope.addToCart = function (item) {
             var flag = true;
-            var o = {"shop": shopId, "name": item.name, "price": item.price, "unit": item.unit, "qty": 1};
+            var o = {"store": storeId, "name": item.name, "price": item.price, "unit": item.unit, "qty": 1};
             angular.forEach($scope.cartItems, function (cartItem) {
-                if (cartItem.shop === o.shop && cartItem.name === o.name) {
+                if (cartItem.store === o.store && cartItem.name === o.name) {
                     cartItem.qty += o.qty;
                     flag = false;
                 }

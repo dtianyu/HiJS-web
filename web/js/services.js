@@ -12,7 +12,7 @@ var appService = angular.module('appService', ['ngResource']);
 
 appService.factory('Cate', function ($resource) {
     return $resource("app/data/cate/:Id.json", {}, {
-        query: {method: "GET", params: {Id: "shops"}, isArray: true},
+        query: {method: "GET", params: {Id: "stores"}, isArray: true},
         top: {method: "GET", params: {Id: "tops"}, isArray: true}
     });
 });
@@ -27,7 +27,7 @@ appService.factory('CateFilter', function () {
 
 appService.factory('Help', function ($resource) {
     return $resource("app/data/help/:Id.json", {}, {
-        query: {method: "GET", params: {Id: "shops"}, isArray: true},
+        query: {method: "GET", params: {Id: "stores"}, isArray: true},
         top: {method: "GET", params: {Id: "tops"}, isArray: true}
     });
 });
