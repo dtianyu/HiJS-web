@@ -5,15 +5,15 @@
                 <div class="col-md-4 panel-title">
                     <h4>             
                         <span class="title">
-                            <strong>{{shop.name}}</strong>                                    
+                            <strong>{{store.name}}</strong>                                    
                         </span>                  
                     </h4>
                     <h6>
-                        <span class="content-rank-stars content-stars-{{shop.hot}}"></span>
-                        <small>人均消费：<strong>{{shop.rjxf}}</strong>元</small>
+                        <span class="content-rank-stars content-stars-{{store.hot}}"></span>
+                        <small>人均消费：<strong>{{store.pcc}}</strong>元</small>
                     </h6>
                     <h6>
-                        地址：{{shop.address}}
+                        地址：{{store.address}}
                     </h6>
                 </div>
 
@@ -22,7 +22,7 @@
                 </div>
             </div>           
             <ul>
-                <li ng-repeat="content in shop.content| filter:query ">
+                <li ng-repeat="content in store.content| filter:query ">
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h6 class="panel-title">
@@ -58,7 +58,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand cartLogo"></a>     
-                    <a class="navbar-brand" href="#/cart/{{shop.id}}">我的菜单<span class="badge">{{totalQty}}份</span></a>
+                    <a class="navbar-brand" href="#/cart/{{store.id}}">我的菜单<span class="badge">{{totalQty}}份</span></a>
                 </div>
                 <div id ="cart-detail" class="navbar-toggle">
                     <ul class="nav nav-pills nav-stacked">

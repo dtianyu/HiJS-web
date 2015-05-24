@@ -33,9 +33,9 @@ appService.factory('Help', function ($resource) {
 });
 
 appService.factory('WebLinks', function ($resource) {
-    return $resource("app/data/weblinks/:Id.json", {}, {
-        links: {method: "GET", params: {Id: "weblinks"}, isArray: true},
-        shortcuts: {method: "GET", params: {Id: "webshortcuts"}, isArray: true}
+    return $resource("app/data/:Id.json", {}, {
+        links: {method: "GET", params: {Id: "Weblink"}, isArray: true},
+        shortcuts: {method: "GET", params: {Id: "//weblinks//webshortcuts"}, isArray: true}
     });
 });
 
