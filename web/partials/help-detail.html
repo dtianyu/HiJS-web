@@ -5,7 +5,7 @@
                 <div class="col-sm-6 col-md-3">
                     <a href="#" class="thumbnail">
                         <img ng-if="store.logo2" ng-src="app/img/{{store.userid}}/{{store.logo2}}" alt="{{store.name}}">
-                        <img ng-if="!store.logo2" ng-src="app/img/catelogo2.png" alt="{{store.name}}"> 
+                        <img ng-if="!store.logo2" ng-src="app/img/helplogo2.png" alt="{{store.name}}"> 
                     </a>
                 </div>
                 <div class="col-sm-6 col-md-9 Pleft8">
@@ -17,7 +17,6 @@
                     </h4>
                     <h4 class="Pleft8">
                         <span class="content-stars-rank content-stars-{{store.hot}}"></span>
-                        <small>人均：<strong>{{store.pcc}}</strong>元</small>
                     </h4>
                     <h5 class="Pleft8">
                         地区：{{store.town}}<span ng-if="store.phone" class="Pleft8">电话：{{store.phone}}</span><span ng-if="store.contactor" class="Pleft8">联系人：{{store.contactor}}</span>
@@ -39,7 +38,7 @@
                         <div class="panel-body">
                             <div class="pic">
                                 <img ng-if="item.logo1" ng-src="app/img/{{store.userid}}/{{item.logo1}}" alt="{{item.itemdesc}}"/>
-                                <img ng-if="!item.logo1" ng-src="app/img/catelogo2.png" alt="{{item.itemdesc}}"/>
+                                <img ng-if="!item.logo1" ng-src="app/img/helplogo2.png" alt="{{item.itemdesc}}"/>
                             </div>
                             <div class="text">
                                 <p><span class="title">价格:</span><strong>{{item.price}}</strong>{{item.unit}}

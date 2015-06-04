@@ -3,6 +3,22 @@
 /* Controllers */
 var key = "com.jinshanlife.cate.cart";
 
+function createOrderDetail(item) {
+    var o = {"storeid": item.storeid, "id": item.id, "content": item.itemdesc, "price": item.price, "unit": item.unit, "qty": 1};
+    return o;
+}
+
+function loadCart(key) {
+    var cartList = localStorage.getItem(key);
+    if (cartList === null || cartList === "") {
+        cartList = [];
+    } else {
+        cartList = JSON.parse(cartList);
+    }
+    return cartList;
+}
+
+
 var MainController = ['$scope', '$routeParams', '$location', 'Cate', 'Help', function ($scope, $routeParams, $location, Cate, Help) {
 
         $scope.findMore = function (path) {
@@ -12,7 +28,6 @@ var MainController = ['$scope', '$routeParams', '$location', 'Cate', 'Help', fun
         $scope.catestores = Cate.top();
         $scope.helpstores = Help.top();
     }];
-
 
 var CateController = ['$scope', '$routeParams', '$location', 'Cate', 'CateFilter', function ($scope, $routeParams, $location, Cate, CateFilter) {
 
@@ -28,141 +43,32 @@ var CateController = ['$scope', '$routeParams', '$location', 'Cate', 'CateFilter
         }
         $scope.orderProp = "idx";
         var storeId = $routeParams.storeId;
-        $scope.totalQty = 0;
-        $scope.totalAmts = 0;
-        $scope.cartItems = loadCart(key);
-        getTotal();
-        $scope.addToCart = function (item) {
-            var flag = true;
-            var o = {"store": storeId, "name": item.name, "price": item.price, "unit": item.unit, "qty": 1};
-            angular.forEach($scope.cartItems, function (cartItem) {
-                if (cartItem.store === o.store && cartItem.name === o.name) {
-                    cartItem.qty += o.qty;
-                    flag = false;
-                }
-            });
-            if (flag) {
-                $scope.cartItems.push(o);
-            }
-            saveCart();
-            getTotal();
-//        alert($scope.cartItems.length);
-        };
-        $scope.clearCart = function () {
-            if ($scope.cartItems !== null) {
-                $scope.cartItems.splice(0, $scope.cartItems.length);
-                saveCart();
-                getTotal();
-            }
-        };
-        $scope.delFromCart = function (item) {
-            removeFromCart(item);
-        };
-        $scope.decreaseCartQty = function (item) {
-            if (item !== null) {
-                var index = $scope.cartItems.indexOf(item);
-                $scope.cartItems[index].qty -= 1;
-                if ($scope.cartItems[index].qty === 0) {
-                    $scope.delFromCart(item);
-                }
-                saveCart();
-                getTotal();
-            }
-        };
-        $scope.increaseCartQty = function (item) {
-            if (item !== null) {
-                var index = $scope.cartItems.indexOf(item);
-                $scope.cartItems[index].qty += 1;
-                saveCart();
-                getTotal();
-            }
-        };
-        $scope.submitCart = function () {
-            if ($scope.cartItems.length < 1) {
-                alert("没有订购明细，无法提交，请先订购！");
-                return false;
-            }
-            $http.post(url_customerorder, $scope.cartItems)
-                    .success(function () {
-                        alert("提交成功！");
-                        $scope.clearCart();
-                    })
-                    .error(function () {
-                        alert("提交失败，请重试！");
-                    });
-        };
-        $scope.isCartEmpty = function () {
-            if ($scope.cartItems === undefined || $scope.cartItems === null) {
-                return true;
-            }
-            if ($scope.cartItems.length < 1) {
-                return true;
-            }
-            return false;
-        }
-
-        function getTotal() {
-            $scope.totalQty = 0;
-            $scope.totalAmts = 0;
-            angular.forEach($scope.cartItems, function (cartItem) {
-                $scope.totalQty += cartItem.qty;
-                $scope.totalAmts += cartItem.price * cartItem.qty;
-            });
-        }
-
-        function loadCart(key) {
-            var cartList = localStorage.getItem(key);
-            if (cartList === null || cartList === "") {
-                cartList = [];
-            } else {
-                cartList = JSON.parse(cartList);
-            }
-            return cartList;
-        }
-
-        function saveCart() {
-            var cartList = new Array();
-            angular.forEach($scope.cartItems, function (cartItem) {
-                cartList.push(cartItem);
-            });
-            localStorage.setItem(key, JSON.stringify(cartList));
-        }
-
-        function removeFromCart(item) {
-            var index = $scope.cartItems.indexOf(item);
-            $scope.cartItems.splice(index, 1);
-            saveCart();
-            getTotal();
-        }
 
     }];
 
-var CateDetailController = ['$scope', '$routeParams', '$location', 'Shop', 'CateFilter', function ($scope, $routeParams, $location, Shop, MeiShiFilter) {
-
+var CateDetailController = ['$scope', '$routeParams', '$location', 'Cate', function ($scope, $routeParams, $location, Cate) {
 
         $scope.findMore = function (path) {
             $location.path(path);
         };
 
-        var url_customerorder = "http://ar.hanbell.com.cn:8480/RESTWebService/webresources/entity.customerorder";
-
-        $scope.doFilter = MeiShiFilter;
         $scope.store;
-        $scope.stores = Shop.query();
-        if ($routeParams.storeId !== undefined) {
-            $scope.store = Shop.get({storeId: $routeParams.storeId});
+        if ($routeParams.Id !== undefined) {
+            $scope.store = Cate.get({Id: $routeParams.Id});
         }
-        $scope.orderProp = "index";
-        var storeId = $routeParams.storeId;
+        var storeId = $routeParams.Id;
+        $scope.orderProp = "idx";
+
         $scope.totalQty = 0;
         $scope.totalAmts = 0;
         $scope.cartItems = loadCart(key);
         getTotal();
+
         $scope.addToCart = function (item) {
             var flag = true;
-            var o = {"store": storeId, "name": item.name, "price": item.price, "unit": item.unit, "qty": 1};
+            var o = createOrderDetail(item)
             angular.forEach($scope.cartItems, function (cartItem) {
-                if (cartItem.store === o.store && cartItem.name === o.name) {
+                if (cartItem.storeid === o.storeid && cartItem.id === o.id) {
                     cartItem.qty += o.qty;
                     flag = false;
                 }
@@ -172,7 +78,6 @@ var CateDetailController = ['$scope', '$routeParams', '$location', 'Shop', 'Cate
             }
             saveCart();
             getTotal();
-//        alert($scope.cartItems.length);
         };
         $scope.clearCart = function () {
             if ($scope.cartItems !== null) {
@@ -227,25 +132,6 @@ var CateDetailController = ['$scope', '$routeParams', '$location', 'Shop', 'Cate
             return false;
         }
 
-        function getTotal() {
-            $scope.totalQty = 0;
-            $scope.totalAmts = 0;
-            angular.forEach($scope.cartItems, function (cartItem) {
-                $scope.totalQty += cartItem.qty;
-                $scope.totalAmts += cartItem.price * cartItem.qty;
-            });
-        }
-
-        function loadCart(key) {
-            var cartList = localStorage.getItem(key);
-            if (cartList === null || cartList === "") {
-                cartList = [];
-            } else {
-                cartList = JSON.parse(cartList);
-            }
-            return cartList;
-        }
-
         function saveCart() {
             var cartList = new Array();
             angular.forEach($scope.cartItems, function (cartItem) {
@@ -261,7 +147,14 @@ var CateDetailController = ['$scope', '$routeParams', '$location', 'Shop', 'Cate
             getTotal();
         }
 
-//        Weather.query("101020700", "index_v", $scope);
+        function getTotal() {
+            $scope.totalQty = 0;
+            $scope.totalAmts = 0;
+            angular.forEach($scope.cartItems, function (cartItem) {
+                $scope.totalQty += cartItem.qty;
+                $scope.totalAmts += cartItem.price * cartItem.qty;
+            });
+        }
     }];
 
 var CateFilterController = ['$scope', 'CateFilter', function ($scope, CateFilter) {
@@ -287,7 +180,6 @@ var CateFilterController = ['$scope', 'CateFilter', function ($scope, CateFilter
 
     }];
 
-
 var HelpController = ['$scope', '$routeParams', '$location', 'Help', 'HelpFilter', function ($scope, $routeParams, $location, Help, HelpFilter) {
 
         $scope.findMore = function (path) {
@@ -300,17 +192,33 @@ var HelpController = ['$scope', '$routeParams', '$location', 'Help', 'HelpFilter
         if ($routeParams.Id !== undefined) {
             $scope.store = Help.get({Id: $routeParams.Id});
         }
-        $scope.orderProp = "index";
+        $scope.orderProp = "idx";
         var storeId = $routeParams.storeId;
+
+    }];
+
+var HelpDetailController = ['$scope', '$routeParams', '$location', 'Help', function ($scope, $routeParams, $location, Help) {
+
+        $scope.findMore = function (path) {
+            $location.path(path);
+        };
+
+        $scope.store;
+        if ($routeParams.Id !== undefined) {
+            $scope.store = Help.get({Id: $routeParams.Id});
+        }
+        $scope.orderProp = "idx";
+        var storeId = $routeParams.storeId;
+
         $scope.totalQty = 0;
         $scope.totalAmts = 0;
         $scope.cartItems = loadCart(key);
         getTotal();
         $scope.addToCart = function (item) {
             var flag = true;
-            var o = {"store": storeId, "name": item.name, "price": item.price, "unit": item.unit, "qty": 1};
+            var o = createOrderDetail(item);
             angular.forEach($scope.cartItems, function (cartItem) {
-                if (cartItem.store === o.store && cartItem.name === o.name) {
+                if (cartItem.store === o.store && cartItem.id === o.id) {
                     cartItem.qty += o.qty;
                     flag = false;
                 }
@@ -320,7 +228,6 @@ var HelpController = ['$scope', '$routeParams', '$location', 'Help', 'HelpFilter
             }
             saveCart();
             getTotal();
-//        alert($scope.cartItems.length);
         };
         $scope.clearCart = function () {
             if ($scope.cartItems !== null) {
@@ -375,25 +282,6 @@ var HelpController = ['$scope', '$routeParams', '$location', 'Help', 'HelpFilter
             return false;
         }
 
-        function getTotal() {
-            $scope.totalQty = 0;
-            $scope.totalAmts = 0;
-            angular.forEach($scope.cartItems, function (cartItem) {
-                $scope.totalQty += cartItem.qty;
-                $scope.totalAmts += cartItem.price * cartItem.qty;
-            });
-        }
-
-        function loadCart(key) {
-            var cartList = localStorage.getItem(key);
-            if (cartList === null || cartList === "") {
-                cartList = [];
-            } else {
-                cartList = JSON.parse(cartList);
-            }
-            return cartList;
-        }
-
         function saveCart() {
             var cartList = new Array();
             angular.forEach($scope.cartItems, function (cartItem) {
@@ -409,7 +297,17 @@ var HelpController = ['$scope', '$routeParams', '$location', 'Help', 'HelpFilter
             getTotal();
         }
 
+        function getTotal() {
+            $scope.totalQty = 0;
+            $scope.totalAmts = 0;
+            angular.forEach($scope.cartItems, function (cartItem) {
+                $scope.totalQty += cartItem.qty;
+                $scope.totalAmts += cartItem.price * cartItem.qty;
+            });
+        }
+
     }];
+
 
 var WebLinksController = ['$scope', 'WebLinks', function ($scope, WebLinks) {
         $scope.weblinks = WebLinks.links();

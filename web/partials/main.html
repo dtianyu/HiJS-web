@@ -58,18 +58,19 @@
                                 <li ng-repeat="store in catestores" style="float: left;padding: 2px;">
                                     <div class="profile">
                                         <div class="thumbnail">
-                                            <img ng-if="store.logo2" ng-src="app/img/{{store.id}}/{{store.logo2}}" alt="{{store.name}}">
+                                            <img ng-if="store.logo2" ng-src="app/img/{{store.userid}}/{{store.logo2}}" alt="{{store.name}}">
                                             <img ng-if="!store.logo2" ng-src="app/img/catelogo2.png" alt="{{store.name}}">                                
                                         </div>
                                         <div class="caption">
                                             <h5> 
-                                                <a href="#/cate/{{store.id}}">{{store.name}}</a><span class="title" ng-if="{{store.pcc}}">人均消费:<strong>{{store.pcc}}</strong>元</span><br>                             
+                                                <a href="#/cate/{{store.id}}">{{store.name}}</a><span class="title" ng-if="store.pcc">人均:<strong>{{store.pcc}}</strong>元</span>                             
                                             </h5>
                                             <p>  
-                                                <span class="content-rank-stars content-stars-{{store.hot}}"></span><br>
-                                                <span class="title">特色:</span>{{store.feature}}<br>
-                                                <span class="label label-primary">{{store.action}}</span>
-                                            </p>   
+                                                <span class="content-stars-rank content-stars-{{store.hot}}"></span>
+                                            </p> 
+                                            <h6 class="title">地区:<strong>{{store.town}}</strong><strong>{{store.phone}}</strong></h6>   
+                                            <h6 class="title">特色:<span>{{store.feature}}</span></h6>
+                                            <span class="label label-primary title">{{store.action}}</span>
                                         </div>
                                     </div>
                                 </li>
@@ -90,19 +91,19 @@
                                 <li ng-repeat="store in helpstores" style="float: left;padding: 2px;">
                                     <div class="profile">
                                         <div class="thumbnail">
-                                            <img ng-if="store.logo2" ng-src="app/img/{{store.id}}/{{store.logo2}}" alt="{{store.name}}">
+                                            <img ng-if="store.logo2" ng-src="app/img/{{store.userid}}/{{store.logo2}}" alt="{{store.name}}">
                                             <img ng-if="!store.logo2" ng-src="app/img/helplogo2.png" alt="{{store.name}}">
                                         </div>
                                         <div class="caption">
                                             <h5>
                                                 <a href="#/help/{{store.id}}">{{store.name}}</a>                              
                                             </h5>
-                                            <p>  
-                                                <span class="content-rank-stars content-stars-{{store.hot * 10}}"></span><br>
-                                                <span class="title">人均消费:</span><strong>{{store.pcc}}</strong>元<br>
-                                                <span class="title">专业:</span>{{store.feature}}<br>
-                                                <span class="label label-primary">{{store.action}}</span>
-                                            </p>   
+                                            <p>
+                                                <span class="content-stars-rank content-stars-{{store.hot * 10}}"></span>  
+                                            </p> 
+                                            <h6 class="title">地区:<strong>{{store.town}}</strong><strong>{{store.phone}}</strong></h6>
+                                            <h6 class="title">专长:<span>{{store.feature}}</span></h6>
+                                            <span class="label label-primary center-block">{{store.action}}</span>
                                         </div>
                                     </div>
                                 </li>

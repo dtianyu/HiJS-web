@@ -15,6 +15,10 @@ li{
     float: left;
 }
 
+.Pleft8{
+    padding-left: 8px; 
+}
+
 /*-------------------------------网站整体布局*/
 #topHead{
     margin: auto;
@@ -24,7 +28,7 @@ li{
 }
 
 #topInfo{
-
+    margin-bottom: 20px;
 }
 
 #topSearch{
@@ -61,7 +65,7 @@ li{
     width: 10%;
     height: 100%;  
     min-width: 100px;
-    margin: 30px 10px 0px 20px;
+    margin: 10px 10px 0px 20px;
     border: 0px none;
     outline: 0px none;
 }
@@ -71,31 +75,10 @@ li{
     width: 100%;  
 }
 
-/*.search_content ul{
-    display: block;
-    height: 22px;
-    padding-top: 10px;
-}
-
-.search_content ul li{
-    float: left;
-    width: 60px;
-    text-align: center;
-}
-
-.search_content a.search_title{
-    color: #0000cc;
-    text-decoration: none;
-}
-
-.search_content a.search_title:hover{
-    color: #DD4802;
-}*/
-
 .search_input{
-    min-width:460px;
+    width:460px;
     height:36px; 
-    margin: 30px 0px 0px 7px;
+    margin: 10px 0px 0px 7px;
     font: 16px/18px arial;    
     background: none repeat scroll 0% 0% transparent;
     border:#0000cc 1px solid;
@@ -263,8 +246,15 @@ li div.profile{
     width: 192px; 
 }
 
-li div.profile h5 span.title{
-    padding-left: 5px; 
+li div.profile h5.title,li div.profile h5.title strong,li div.profile h5.title span,
+li div.profile h6.title,li div.profile h6.title strong,li div.profile h6.title span,
+li div.profile span.title{
+    padding-left: 8px; 
+}
+
+li div.thumbnail img{
+    height: 121px;
+    width:182px; 
 }
 
 .panel-title span{
@@ -301,7 +291,7 @@ li div.profile h5 span.title{
     padding: 5px 10px 0px 10px;
 }
 
-.content-rank-stars{ 
+.content-stars-rank{ 
     display: inline-block;
     height: 12px;
     width: 78px;
@@ -309,7 +299,7 @@ li div.profile h5 span.title{
     background-repeat:  no-repeat;
 }
 
-.content-stars-50{
+.content-stars-5,.content-stars-50{
     background-position: 0px -880px;
 }
 
@@ -317,7 +307,7 @@ li div.profile h5 span.title{
     background-position: 0px -900px;
 }
 
-.content-stars-40{
+.content-stars-4,.content-stars-40{
     background-position: 0px -920px;
 }
 
@@ -325,7 +315,7 @@ li div.profile h5 span.title{
     background-position: 0px -940px;
 }
 
-.content-stars-30{
+.content-stars-3,.content-stars-30{
     background-position: 0px -960px;
 }
 
@@ -333,7 +323,7 @@ li div.profile h5 span.title{
     background-position: 0px -980px;
 }
 
-.content-stars-20{
+.content-stars-2,.content-stars-20{
     background-position: 0px -1000px;
 }
 
