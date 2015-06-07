@@ -1,29 +1,29 @@
-<div id="topSearch">
-    <div class="search_form">
-        <form name="search_form1" method="get" action="http://www.baidu.com/baidu" target="_blank" >
-            <input type="hidden" value="0" name="myselectvalue">
-            <input type="hidden" value="utf-8" name="ie">
-            <input type="hidden" name="tn" value="baidu">
-            <input type="hidden" name="ct">
-            <input type="hidden" name="lm">
-            <input type="hidden" name="cl">
-            <input type="hidden" name="rn">
-            <div align="center" class="search_logo">
-                <a href="http://www.baidu.com/">
-                    <img border="0" align="bottom" alt="Baidu" src="http://img.baidu.com/img/logo-80px.gif">
-                </a>
-            </div>                             
-            <div class="search_content">
-                <span >
-                    <input  name="word" id="word" class="search_input">
-                    <input type="submit" value="百度一下" class="search_submit">                                       
-                </span>
-            </div>
-        </form>    
-    </div>
-</div>      
 <div class="row">
     <div class="col-md-9" >
+        <div id="topSearch">
+            <div class="search_form">
+                <form name="search_form1" method="get" action="http://www.baidu.com/baidu" target="_blank" >
+                    <input type="hidden" value="0" name="myselectvalue">
+                    <input type="hidden" value="utf-8" name="ie">
+                    <input type="hidden" name="tn" value="baidu">
+                    <input type="hidden" name="ct">
+                    <input type="hidden" name="lm">
+                    <input type="hidden" name="cl">
+                    <input type="hidden" name="rn">
+                    <div align="center" class="search_logo">
+                        <a href="http://www.baidu.com/">
+                            <img border="0" align="bottom" alt="Baidu" src="http://img.baidu.com/img/logo-80px.gif">
+                        </a>
+                    </div>                             
+                    <div class="search_content">
+                        <span >
+                            <input  name="word" id="word" class="search_input">
+                            <input type="submit" value="百度一下" class="search_submit">                                       
+                        </span>
+                    </div>
+                </form>    
+            </div>
+        </div>   
         <div id="topNav">
             <div id="weblinks" ng-controller="WebLinksController">
                 <div class="panel">
@@ -41,7 +41,7 @@
                     <a href="#cateTab" data-toggle="tab" show-tab><h5>找美食</h5></a>
                 </li>
                 <li>
-                    <a href="#helpTab" data-toggle="tab" show-tab><h5>寻帮忙</h5></a>
+                    <a href="#helpTab" data-toggle="tab" show-tab><h5>生活帮</h5></a>
                 </li>
             </ul>
             <div id="myTabContent" class="tab-content">
@@ -112,9 +112,24 @@
                     </div>
                 </div>
             </div>
-        </div>  
+        </div>      
     </div>
-    <div class="col-md-3">
+    <div class="col-md-3" >
+        <ul class="nav nav-pills nav-stacked">
+            <li class="active">
+                <a href="#">
+                    <span class="badge pull-right">42</span>
+                    首页
+                </a>
+            </li>
+            <li><a href="#/cate">找美食</a></li>
+            <li><a href="#/help"><span class="badge pull-right">3</span>生活帮</a></li>
+            <li>
+                <a href="#">
+
+                </a>
+            </li>
+        </ul>
         <div id="webshortcuts"   ng-controller="WebLinksController">
             <div class="panel">
                 <ul class="webshortcuts">
@@ -125,6 +140,6 @@
             </div>
         </div>
     </div>
-</div>
+
 
 

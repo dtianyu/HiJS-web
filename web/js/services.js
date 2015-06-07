@@ -9,6 +9,13 @@ var home_api = "app/data";
 
 var appService = angular.module('appService', ['ngResource']);
 
+appService.factory('Filter', function () {
+    return{
+        filterDetail: {},
+        filters: [],
+        searchText: ''
+    };
+});
 
 appService.factory('Cate', function ($resource) {
     return $resource("app/data/:Id.json", {}, {
@@ -17,27 +24,11 @@ appService.factory('Cate', function ($resource) {
     });
 });
 
-appService.factory('CateFilter', function () {
-    return{
-        filterDetail: {},
-        filters: [],
-        searchText: ''
-    };
-});
-
 appService.factory('Help', function ($resource) {
     return $resource("app/data/:Id.json", {}, {
         query: {method: "GET", params: {Id: "help"}, isArray: true},
         top: {method: "GET", params: {Id: "helpTop"}, isArray: true}
     });
-});
-
-appService.factory('HelpFilter', function () {
-    return{
-        filterDetail: {},
-        filters: [],
-        searchText: ''
-    };
 });
 
 appService.factory('WebLinks', function ($resource) {

@@ -8,15 +8,16 @@
         "address":"石化",
         "contacter":"丁丁",
         "phone":"",
-        "town":"石化",
-        "category":"甜品、果汁",
-        "pcc":0.00,
+        "town":"朱泾",
+        "category":"甜品",
+        "pcc":16.00,
         "feature":"",
         "action":"",
         "logo1":"",
-        "logo2":"1122.jpg",
+        "logo2":"Lighthouse.jpg",
         "hot":4,
-        "idx":0
+        "idx":0,
+        "itemcount":0
     },
     {
         "id":1003,
@@ -34,6 +35,7 @@
         "logo1":"",
         "logo2":"sina_logo.jpg",
         "hot":4,
-        "idx":0
+        "idx":0,
+        "itemcount":0
     }
 ]

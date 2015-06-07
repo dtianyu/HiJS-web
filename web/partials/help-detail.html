@@ -19,7 +19,7 @@
                         <span class="content-stars-rank content-stars-{{store.hot}}"></span>
                     </h4>
                     <h5 class="Pleft8">
-                        地区：{{store.town}}<span ng-if="store.phone" class="Pleft8">电话：{{store.phone}}</span><span ng-if="store.contactor" class="Pleft8">联系人：{{store.contactor}}</span>
+                        地区：{{store.town}}<span ng-if="store.phone" class="Pleft8">电话：{{store.phone}}</span><span ng-if="store.contacter" class="Pleft8">联系人：{{store.contacter}}</span>
                     </h5>
                     <h6 ng-if="store.action" >地址：{{store.action}}</h6>
                 </div>
@@ -66,7 +66,7 @@
                 </div>
                 <div id ="cart-detail" class="navbar-toggle">
                     <ul class="nav nav-pills nav-stacked">
-                        <li class="active"><button type="button" class="btn  btn-xs cart-clear" ng-disabled="isCartEmpty()" ng-click="clearCart()">清除</button><a>菜单明细</a></li>
+                        <li class="active"><button type="button" class="btn  btn-xs cart-clear" ng-disabled="isCartEmpty()" ng-click="clearCart()">清除</button><a>详细内容</a></li>
                         <li ng-repeat="item in cartItems">
                             <button type="button" class="btn btn-primary btn-xs cart-del" ng-click="delFromCart(item)">删除</button>                                    
                             <h5>{{item.content}} {{item.price}}{{item.unit}}<span class="cart-qty">

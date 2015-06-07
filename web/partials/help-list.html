@@ -1,68 +1,76 @@
 <div class="container">
     <div class="row">
-        <div class="col-lg-9 col-md-9 col-sm-7 left">  
-            <div class="container" ng-controller="CateFilterController" style="margin-bottom: 20px;">
-                <div class="row" style=" padding-top: 5px;padding-bottom: 5px;">
-                    <div class="col-md-1 text-right">
-                        <a class="text-primary ">搜索</a> 
-                    </div>
-                    <div class="col-md-5" >
-                        <input class="searchBar"  ng-model="doFilter.searchText"/>
-                    </div>
-                    <div class="col-md-5">
-                        <span class="text-primary ">搜索</span><small>
-                            <input type="radio" ng-model="orderProp" value="index" class="orderProp"/>人气
-                            <input type="radio" ng-model="orderProp" value="rjxf" class="orderProp"/>人均消费
-                            <input type="radio" ng-model="orderProp" value="name" class="orderProp"/>名称
-                        </small>     
-                    </div>            
-                </div>
-                <div class="row" style=" padding-top: 5px;padding-bottom: 5px;">
-                    <div class="col-md-1 text-right">
-                        <a class="text-primary ">已筛选</a> 
-                    </div>
-                    <div class="col-md-11" >
-                        <li style="float: left" ng-repeat="f in doFilter.filters">
-                            <a ng-click="removeFilterCategory(f);">{{f.key}}:{{f.value}}</a>
+        <div class="col-md-9 col-sm-7 left">  
+            <div class="filter" ng-controller="FilterController" style="margin-bottom: 20px;">
+                <div class="row" style=" padding-top: 5px;padding-bottom: 5px;">                   
+                    <ul>
+                        <li class="title"><a class="text-primary">搜索</a></li>
+                        <li><input style="width: 100%;" ng-model="doFilter.searchText"/></li>
+                        <li class="text-primary" style="float: right;padding-right: 20px;">排序<small>
+                                <input type="radio" ng-model="orderProp" value="idx" class="orderProp"/>人气
+                                <input type="radio" ng-model="orderProp" value="pcc" class="orderProp"/>人均消费
+                                <input type="radio" ng-model="orderProp" value="itemdesc" class="orderProp"/>名称
+                            </small>
                         </li>
-                    </div>
+                    </ul> 
+                </div>
+                <div class="row" style=" padding-top: 5px;padding-bottom: 5px;">                  
+                    <ul>
+                        <li class="title"><a class="text-primary">地区</a></li>
+                        <li  ng-repeat="f in  ['枫泾', '石化', '朱泾', '亭林', '张堰']">
+                            <a ng-click="addFilterTown(f);">{{f}}</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="row" style=" padding-top: 5px;padding-bottom: 5px;">                  
+                    <ul>
+                        <li class="title"><a class="text-primary">类别</a></li>
+                        <li  ng-repeat="f in  ['小吃', '中式快餐', '点心', '甜品', '港式餐厅']">
+                            <a ng-click="addFilterCategory(f);">{{f}}</a>
+                        </li>
+                    </ul>
                 </div>
                 <div class="row" style=" padding-top: 5px;padding-bottom: 5px;">
-                    <div class="col-md-1 text-right">
-                        <a class="">类别</a> 
-                    </div>
-                    <div class="col-md-11">
-                        <ul>
-                            <li style="float: left" ng-repeat="c in  ['小吃', '中式快餐', '点心', '生活百科']">
-                                <a ng-click="addFilterCategory(c);">{{c}}</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div> 
+                    <ul>
+                        <li class="title"><a class="text-primary">已筛选</a></li>
+                        <li  ng-repeat="f in doFilter.filters">
+                            <a ng-click="removeFilter(f);">{{f.value}}</a>
+                        </li>
+                    </ul>
+                </div>
             </div>
-            <ul>
-                <li ng-repeat="store in stores | filter: doFilter.filterDetail | orderBy:orderProp" style="float: left;padding: 2px;">
-                    <div class="profile">
-                        <div class="thumbnail">
-                            <img ng-if="store.logo1" ng-src="app/img/{{store.userid}}/{{store.logo1}}" alt="{{store.name}}">
-                            <img ng-if="!store.logo1" ng-src="app/img/helplogo1.png" alt="{{store.name}}">                         
-                        </div>
-                        <div class="caption">
-                            <h5>
-                                <a href="#/cate/{{shop.id}}">{{shop.name}}</a>                              
-                            </h5>
-                            <p>  
-                                <span class="content-stars-rank content-stars-{{shop.hot}}"></span><br>
-                                <span class="title">人均消费:</span><strong>{{shop.pcc}}</strong>元<br>
-                                <span class="title">特色:</span>{{shop.feature}} < br >
-                                < span class = "label label-primary" > {{shop.action}}</span>
-                            </p>   
-                        </div>
-                    </div>
-                </li>
-            </ul>
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h6 class="panel-title">
+                        <span class="title">金山生活-寻帮忙很简单</span>
+                    </h6>
+                </div>
+                <div class="panel-body">
+                    <ul>
+                        <li ng-repeat="store in stores| filter: doFilter.filterDetail | orderBy:orderProp" style="float: left;padding: 2px;">
+                            <div class="profile">
+                                <div class="thumbnail">
+                                    <img ng-if="store.logo2" ng-src="app/img/{{store.userid}}/{{store.logo2}}" alt="{{store.name}}">
+                                    <img ng-if="!store.logo2" ng-src="app/img/helplogo2.png" alt="{{store.name}}">                         
+                                </div>
+                                <div class="caption">
+                                    <h5>
+                                        <a href="#/help/{{store.id}}">{{store.name}}</a>                              
+                                    </h5> 
+                                    <p>  
+                                        <span class="content-stars-rank content-stars-{{store.hot}}"></span>
+                                    </p>
+                                    <h6 class="title">地区:<strong>{{store.town}}</strong><strong>{{store.phone}}</strong></h6>   
+                                    <h6 class="title">专长:<span>{{store.feature}}</span></h6>
+                                    <span class="label label-primary title">{{store.action}}</span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <div class="col-lg-3 col-md-3 col-sm-5 right">
+        <div class="col-md-3 col-sm-5 right">
             <hr>
             广告承租!
         </div>

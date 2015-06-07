@@ -18,6 +18,61 @@ function loadCart(key) {
     return cartList;
 }
 
+var FilterController = ['$scope', 'Filter', function ($scope, Filter) {
+
+        $scope.doFilter = Filter;
+
+        $scope.addFilterCategory = function (filter) {
+            var i;
+            if ($scope.doFilter.filterDetail.category === undefined) {
+                $scope.doFilter.filterDetail.category = [];
+            }
+            if ($scope.doFilter.filters === undefined) {
+                $scope.doFilter.filters = [];
+            }
+            i = $scope.doFilter.filterDetail.category.indexOf(filter);
+            if (i === -1) {
+                $scope.doFilter.filterDetail.category.push(filter);
+                $scope.doFilter.filters.push({"key": "category", "value": filter});
+            }
+        };
+
+        $scope.addFilterTown = function (filter) {
+            var i;
+            if ($scope.doFilter.filterDetail.town === undefined) {
+                $scope.doFilter.filterDetail.town = [];
+            }
+            if ($scope.doFilter.filters === undefined) {
+                $scope.doFilter.filters = [];
+            }
+            i = $scope.doFilter.filterDetail.town.indexOf(filter);
+            if (i === -1) {
+                $scope.doFilter.filterDetail.town.push(filter);
+                $scope.doFilter.filters.push({"key": "town", "value": filter});
+            }
+        };
+
+        $scope.removeFilter = function (filterObject) {
+            var i = -1;
+            i = $scope.doFilter.filters.indexOf(filterObject);
+            if (i !== -1) {
+                $scope.doFilter.filters.splice(i, 1);
+            }
+            if ($scope.doFilter.filterDetail.town !== undefined) {
+                i = $scope.doFilter.filterDetail.town.indexOf(filterObject.value);
+                if (i !== -1) {
+                    $scope.doFilter.filterDetail.town.splice(i, 1);
+                }
+            }
+            if ($scope.doFilter.filterDetail.category !== undefined) {
+                i = $scope.doFilter.filterDetail.category.indexOf(filterObject.value);
+                if (i !== -1) {
+                    $scope.doFilter.filterDetail.category.splice(i, 1);
+                }
+            }
+        };
+
+    }];
 
 var MainController = ['$scope', '$routeParams', '$location', 'Cate', 'Help', function ($scope, $routeParams, $location, Cate, Help) {
 
@@ -29,13 +84,13 @@ var MainController = ['$scope', '$routeParams', '$location', 'Cate', 'Help', fun
         $scope.helpstores = Help.top();
     }];
 
-var CateController = ['$scope', '$routeParams', '$location', 'Cate', 'CateFilter', function ($scope, $routeParams, $location, Cate, CateFilter) {
+var CateController = ['$scope', '$routeParams', '$location', 'Cate', 'Filter', function ($scope, $routeParams, $location, Cate, Filter) {
 
         $scope.findMore = function (path) {
             $location.path(path);
         };
 
-        $scope.doFilter = CateFilter;
+        $scope.doFilter = Filter;
         $scope.store;
         $scope.stores = Cate.query();
         if ($routeParams.Id !== undefined) {
@@ -157,36 +212,13 @@ var CateDetailController = ['$scope', '$routeParams', '$location', 'Cate', funct
         }
     }];
 
-var CateFilterController = ['$scope', 'CateFilter', function ($scope, CateFilter) {
-
-        $scope.doFilter = CateFilter;
-
-        $scope.addFilterCategory = function (filter) {
-            if ($scope.doFilter.filterDetail.caixi === undefined) {
-                $scope.doFilter.filterDetail.caixi = [];
-            }
-            $scope.doFilter.filterDetail.caixi.push(filter);
-            if ($scope.doFilter.filters === undefined) {
-                $scope.doFilter.filters = [];
-            }
-            $scope.doFilter.filters.push({"key": "菜系", "value": filter});
-            alert($scope.doFilter.filters);
-        };
-
-        $scope.removeFilterCategory = function (Object) {
-            $scope.doFilter.filters.pop(Object);
-            $scope.doFilter.filterDetail.caixi.pop(Object.value);
-        };
-
-    }];
-
-var HelpController = ['$scope', '$routeParams', '$location', 'Help', 'HelpFilter', function ($scope, $routeParams, $location, Help, HelpFilter) {
+var HelpController = ['$scope', '$routeParams', '$location', 'Help', 'Filter', function ($scope, $routeParams, $location, Help, Filter) {
 
         $scope.findMore = function (path) {
             $location.path(path);
         };
 
-        $scope.doFilter = HelpFilter;
+        $scope.doFilter = Filter;
         $scope.store;
         $scope.stores = Help.query();
         if ($routeParams.Id !== undefined) {
@@ -307,7 +339,6 @@ var HelpDetailController = ['$scope', '$routeParams', '$location', 'Help', funct
         }
 
     }];
-
 
 var WebLinksController = ['$scope', 'WebLinks', function ($scope, WebLinks) {
         $scope.weblinks = WebLinks.links();

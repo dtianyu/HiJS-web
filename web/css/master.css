@@ -76,7 +76,7 @@ li{
 }
 
 .search_input{
-    width:460px;
+    width: 60%;
     height:36px; 
     margin: 10px 0px 0px 7px;
     font: 16px/18px arial;    
@@ -104,7 +104,7 @@ li{
     overflow: hidden;
 }
 
-.weblinks li,.webshortcuts li{
+.weblinks li,.webshortcuts li,.filter li{
     float: left;
 }
 
@@ -120,9 +120,15 @@ li{
     text-align: left;
 }
 
-.weblinks li a,.webshortcuts li a{
+.filter li{
+    min-width: 62px;
+    height: 30px;
+    text-align: center;
+}
+
+.weblinks li a,.webshortcuts li a,.filter li.ng-scope a{
     display: inline-block;
-    color: black;
+    color: black; 
     text-decoration: none;
 }
 
@@ -131,7 +137,11 @@ li{
     height: 26px; 
 }
 
-.weblinks li a:hover{
+.weblinks li a img{
+    height: 20px;
+}
+
+.weblinks li a:hover,.filter li.ng-scope a:hover{
     color:#dd4814;
     border: 1px solid #AAD4FA;
     background-color: #EAF4FE;
@@ -147,9 +157,11 @@ li{
     font-size: 15px;
 }
 
-.weblinks li a img{
-    height: 20px;
+.filter li a{
+    min-width: 60px;
+    height: 26px; 
 }
+
 /*------------------------------------------导航信息*/
 
 #cart-detail{
@@ -246,16 +258,17 @@ li div.profile{
     width: 192px; 
 }
 
+li div.thumbnail img{
+    height: 121px;
+    width:182px; 
+}
+
 li div.profile h5.title,li div.profile h5.title strong,li div.profile h5.title span,
 li div.profile h6.title,li div.profile h6.title strong,li div.profile h6.title span,
 li div.profile span.title{
     padding-left: 8px; 
 }
 
-li div.thumbnail img{
-    height: 121px;
-    width:182px; 
-}
 
 .panel-title span{
     display: inline-block;
