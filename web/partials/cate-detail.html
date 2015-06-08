@@ -43,7 +43,7 @@
                             </div>
                             <div class="text">
                                 <p><span class="title">价格:</span><strong>{{item.price}}</strong>{{item.unit}}
-                                    <button type="button" class="btn btn-primary btn-xs cart-add" ng-click="addToCart(item)">我要</button>
+                                    <button type="button" class="btn btn-primary btn-xs cart-add" ng-click="cart.add(item)">我要</button>
                                 </p>                    
                                 <p><span class="title">特色:</span>{{item.itemspec}}</p>
                             </div>
@@ -63,29 +63,28 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand cartLogo"></a>     
-                    <a class="navbar-brand" href="#/cart/{{store.id}}">我的购物车<span class="badge">{{totalQty}}份</span></a>
+                    <a class="navbar-brand" href="#/cart/{{store.id}}">我的购物车<span class="badge">{{cart.totalQty}}</span></a>
                 </div>
                 <div id ="cart-detail" class="navbar-toggle">
                     <ul class="nav nav-pills nav-stacked">
-                        <li class="active"><button type="button" class="btn  btn-xs cart-clear" ng-disabled="isCartEmpty()" ng-click="clearCart()">清除</button><a>详细内容</a></li>
-                        <li ng-repeat="item in cartItems">
-                            <button type="button" class="btn btn-primary btn-xs cart-del" ng-click="delFromCart(item)">删除</button>                                    
+                        <li class="active"><button type="button" class="btn  btn-xs cart-clear" ng-disabled="cart.isEmpty()" ng-click="cart.clear()">清除</button><a>详细内容</a></li>
+                        <li ng-repeat="item in cart.cartItems">
+                            <button type="button" class="btn btn-primary btn-xs cart-del" ng-click="cart.remove(item)">删除</button>                                    
                             <h5>{{item.content}} {{item.price}}{{item.unit}}<span class="cart-qty">
-                                    <a class="less" ng-click="decreaseCartQty(item)">-</a>
+                                    <a class="less" ng-click="cart.less(item)">-</a>
                                     <span class="badge">{{item.qty}}</span>
-                                    <a class="more" ng-click="increaseCartQty(item)">+</a>
+                                    <a class="more" ng-click="cart.more(item)">+</a>
                                 </span>
                             </h5>                            
                         </li>
                         <li class="active">
-                            <button type="button" class="btn btn-success btn-xs cart-submit" ng-disabled="isCartEmpty()" ng-click="submitCart()">提交</button>
-                            <a>共{{totalAmts| currency}}元</a>
+                            <button type="button" class="btn btn-success btn-xs cart-submit" ng-disabled="cart.isEmpty()" ng-click="">提交</button>
+                            <a>共{{cart.totalAmts| currency}}元</a>
                         </li>
                     </ul>
                 </div>
 
             </div>
-
         </div>
     </div>
 </div>
