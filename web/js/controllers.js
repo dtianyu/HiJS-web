@@ -69,7 +69,7 @@ var MainController = ['$scope', '$routeParams', '$location', 'Cate', 'Help', fun
         $scope.helpstores = Help.top();
     }];
 
-var CateController = ['$scope', '$routeParams', '$location', 'Cate', 'Filter', function ($scope, $routeParams, $location, Cate, Filter) {
+var CateController = ['$scope', '$routeParams', '$location', 'Cate', 'Filter', 'Category', function ($scope, $routeParams, $location, Cate, Filter, Category) {
 
         $scope.findMore = function (path) {
             $location.path(path);
@@ -83,6 +83,8 @@ var CateController = ['$scope', '$routeParams', '$location', 'Cate', 'Filter', f
         }
         $scope.orderProp = "idx";
         var storeId = $routeParams.storeId;
+
+        $scope.category = Category.cate();
 
     }];
 
@@ -104,7 +106,7 @@ var CateDetailController = ['$scope', '$routeParams', '$location', 'Cate', 'Cart
 
     }];
 
-var HelpController = ['$scope', '$routeParams', '$location', 'Help', 'Filter', function ($scope, $routeParams, $location, Help, Filter) {
+var HelpController = ['$scope', '$routeParams', '$location', 'Help', 'Filter', 'Category', function ($scope, $routeParams, $location, Help, Filter, Category) {
 
         $scope.findMore = function (path) {
             $location.path(path);
@@ -118,6 +120,8 @@ var HelpController = ['$scope', '$routeParams', '$location', 'Help', 'Filter', f
         }
         $scope.orderProp = "idx";
         var storeId = $routeParams.storeId;
+
+        $scope.category = Category.help();
 
     }];
 

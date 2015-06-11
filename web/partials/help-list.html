@@ -25,8 +25,8 @@
                 <div class="row" style=" padding-top: 5px;padding-bottom: 5px;">                  
                     <ul>
                         <li class="title"><a class="text-primary">类别</a></li>
-                        <li  ng-repeat="f in  ['小吃', '中式快餐', '点心', '甜品', '港式餐厅']">
-                            <a ng-click="addFilterCategory(f);">{{f}}</a>
+                        <li  ng-repeat="f in category">
+                            <a ng-click="addFilterCategory(f.category);">{{f.category}}</a>
                         </li>
                     </ul>
                 </div>
@@ -51,7 +51,7 @@
                             <div class="profile">
                                 <div class="thumbnail">
                                     <img ng-if="store.logo2" ng-src="app/img/{{store.userid}}/{{store.logo2}}" alt="{{store.name}}">
-                                    <img ng-if="!store.logo2" ng-src="app/img/helplogo2.png" alt="{{store.name}}">                         
+                                    <img ng-if="!store.logo2" ng-src="app/img/{{store.category}}.png" alt="{{store.name}}">                         
                                 </div>
                                 <div class="caption">
                                     <h5>

@@ -119,6 +119,12 @@ appService.factory('Cart', function () {
         }
     };
 });
+appService.factory('Category', function ($resource) {
+    return $resource("app/data/:Id.json", {}, {
+         cate: {method: "GET", params: {Id: "cateCategory"}, isArray: true},
+         help: {method: "GET", params: {Id: "helpCategory"}, isArray: true}
+    });
+});
 appService.factory('Cate', function ($resource) {
     return $resource("app/data/:Id.json", {}, {
         query: {method: "GET", params: {Id: "cate"}, isArray: true},

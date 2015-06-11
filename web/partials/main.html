@@ -38,10 +38,10 @@
         <div id="content">
             <ul id="myTab" class="nav nav-tabs">
                 <li class="active">
-                    <a href="#cateTab" data-toggle="tab" show-tab><h5>找美食</h5></a>
+                    <a href="#cateTab" data-toggle="tab" show-tab><h5>美食外卖</h5></a>
                 </li>
                 <li>
-                    <a href="#helpTab" data-toggle="tab" show-tab><h5>生活帮</h5></a>
+                    <a href="#helpTab" data-toggle="tab" show-tab><h5>同城服务</h5></a>
                 </li>
             </ul>
             <div id="myTabContent" class="tab-content">
@@ -59,7 +59,7 @@
                                     <div class="profile">
                                         <div class="thumbnail">
                                             <img ng-if="store.logo2" ng-src="app/img/{{store.userid}}/{{store.logo2}}" alt="{{store.name}}">
-                                            <img ng-if="!store.logo2" ng-src="app/img/catelogo2.png" alt="{{store.name}}">                                
+                                            <img ng-if="!store.logo2" ng-src="app/img/{{store.category}}.png" alt="{{store.name}}">                                
                                         </div>
                                         <div class="caption">
                                             <h5> 
@@ -92,7 +92,7 @@
                                     <div class="profile">
                                         <div class="thumbnail">
                                             <img ng-if="store.logo2" ng-src="app/img/{{store.userid}}/{{store.logo2}}" alt="{{store.name}}">
-                                            <img ng-if="!store.logo2" ng-src="app/img/helplogo2.png" alt="{{store.name}}">
+                                            <img ng-if="!store.logo2" ng-src="app/img/{{store.category}}.png" alt="{{store.name}}">
                                         </div>
                                         <div class="caption">
                                             <h5>
@@ -122,8 +122,8 @@
                     首页
                 </a>
             </li>
-            <li><a href="#/cate">找美食</a></li>
-            <li><a href="#/help"><span class="badge pull-right">3</span>生活帮</a></li>
+            <li><a href="#/cate">美食外卖</a></li>
+            <li><a href="#/help"><span class="badge pull-right">3</span>同城服务</a></li>
             <li>
                 <a href="#">
 
