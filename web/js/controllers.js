@@ -3,8 +3,8 @@
 /* Controllers */
 var key = "com.jinshanlife.cart";
 
-var FilterController = ['$scope', 'Filter', function ($scope, Filter) {
-
+var FilterController = ['$scope', 'Filter', 'Area', function ($scope, Filter, Area) {
+        $scope.town = Area.town();
         $scope.doFilter = Filter;
 
         $scope.addFilterCategory = function (filter) {
@@ -59,12 +59,12 @@ var FilterController = ['$scope', 'Filter', function ($scope, Filter) {
 
     }];
 
-var MainController = ['$scope', '$routeParams', '$location', 'Cate', 'Help', function ($scope, $routeParams, $location, Cate, Help) {
+var MainController = ['$scope', '$routeParams', '$location', 'Cate', 'Help', 'StoreKind', function ($scope, $routeParams, $location, Cate, Help, StoreKind) {
 
         $scope.findMore = function (path) {
             $location.path(path);
         };
-
+        $scope.storekind = StoreKind.query();
         $scope.catestores = Cate.top();
         $scope.helpstores = Help.top();
     }];

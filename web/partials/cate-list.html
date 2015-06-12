@@ -5,7 +5,7 @@
                 <div class="row" style=" padding-top: 5px;padding-bottom: 5px;">                   
                     <ul>
                         <li class="title"><a class="text-primary">搜索</a></li>
-                        <li><input style="width: 100%;" ng-model="doFilter.searchText"/></li>
+                        <li><input style="min-width: 400px;" ng-model="doFilter.searchText"/></li>
                         <li class="text-primary" style="float: right;padding-right: 20px;">排序<small>
                                 <input type="radio" ng-model="orderProp" value="idx" class="orderProp"/>人气
                                 <input type="radio" ng-model="orderProp" value="pcc" class="orderProp"/>人均消费
@@ -17,8 +17,8 @@
                 <div class="row" style=" padding-top: 5px;padding-bottom: 5px;">                  
                     <ul>
                         <li class="title"><a class="text-primary">地区</a></li>
-                        <li  ng-repeat="f in  ['枫泾', '石化', '朱泾', '亭林', '张堰']">
-                            <a ng-click="addFilterTown(f);">{{f}}</a>
+                        <li  ng-repeat="f in  town">
+                            <a ng-click="addFilterTown(f.area);">{{f.area}}<span class="text-info">({{f.storecount}})</span></a>
                         </li>
                     </ul>
                 </div>

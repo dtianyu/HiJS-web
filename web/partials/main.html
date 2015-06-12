@@ -118,12 +118,11 @@
         <ul class="nav nav-pills nav-stacked">
             <li class="active">
                 <a href="#">
-                    <span class="badge pull-right">42</span>
                     首页
                 </a>
             </li>
-            <li><a href="#/cate">美食外卖</a></li>
-            <li><a href="#/help"><span class="badge pull-right">3</span>同城服务</a></li>
+            <li ng-repeat="k in storekind">
+                <a href="#/{{k.classname}}">{{k.name}}<span class="badge pull-right">{{k.storecount}}</span></a></li>
             <li>
                 <a href="#">
 

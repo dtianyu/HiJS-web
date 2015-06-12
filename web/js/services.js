@@ -10,12 +10,11 @@ var home_api = "app/data";
 var key = "com.jinshanlife.cart";
 
 var appService = angular.module('appService', ['ngResource']);
-appService.factory('Filter', function () {
-    return{
-        filterDetail: {},
-        filters: [],
-        searchText: ''
-    };
+
+appService.factory('Area', function ($resource) {
+    return $resource("app/data/:Id.json", {}, {
+        town: {method: "GET", params: {Id: "town"}, isArray: true}
+    });
 });
 appService.factory('Cart', function () {
     return {
@@ -119,22 +118,34 @@ appService.factory('Cart', function () {
         }
     };
 });
-appService.factory('Category', function ($resource) {
-    return $resource("app/data/:Id.json", {}, {
-         cate: {method: "GET", params: {Id: "cateCategory"}, isArray: true},
-         help: {method: "GET", params: {Id: "helpCategory"}, isArray: true}
-    });
-});
 appService.factory('Cate', function ($resource) {
     return $resource("app/data/:Id.json", {}, {
         query: {method: "GET", params: {Id: "cate"}, isArray: true},
         top: {method: "GET", params: {Id: "cateTop"}, isArray: true}
     });
 });
+appService.factory('Category', function ($resource) {
+    return $resource("app/data/:Id.json", {}, {
+        cate: {method: "GET", params: {Id: "cateCategory"}, isArray: true},
+        help: {method: "GET", params: {Id: "helpCategory"}, isArray: true}
+    });
+});
+appService.factory('Filter', function () {
+    return{
+        filterDetail: {},
+        filters: [],
+        searchText: ''
+    };
+});
 appService.factory('Help', function ($resource) {
     return $resource("app/data/:Id.json", {}, {
         query: {method: "GET", params: {Id: "help"}, isArray: true},
         top: {method: "GET", params: {Id: "helpTop"}, isArray: true}
+    });
+});
+appService.factory('StoreKind', function ($resource) {
+    return $resource("app/data/:Id.json", {}, {
+        query: {method: 'GET', params: {Id: 'storekind'}, isArray: true}
     });
 });
 appService.factory('WebLinks', function ($resource) {
