@@ -3,6 +3,16 @@
 /* Controllers */
 var key = "com.jinshanlife.cart";
 
+var getTimestamp = function () {
+    return Math.round(new Date().getTime() / 1000);
+};
+
+var CartController = ['$scope', 'Cart', function ($scope, Cart) {
+        $scope.cart = Cart;
+        $scope.cart.init();
+        $scope.cart.sum();
+    }];
+
 var FilterController = ['$scope', 'Filter', 'Area', function ($scope, Filter, Area) {
         $scope.town = Area.town();
         $scope.doFilter = Filter;
@@ -61,7 +71,7 @@ var FilterController = ['$scope', 'Filter', 'Area', function ($scope, Filter, Ar
 
 var MainController = ['$scope', '$routeParams', '$location', 'Cate', 'Help', 'StoreKind', function ($scope, $routeParams, $location, Cate, Help, StoreKind) {
 
-        $scope.findMore = function (path) {
+        $scope.goto = function (path) {
             $location.path(path);
         };
         $scope.storekind = StoreKind.query();
@@ -71,7 +81,7 @@ var MainController = ['$scope', '$routeParams', '$location', 'Cate', 'Help', 'St
 
 var CateController = ['$scope', '$routeParams', '$location', 'Cate', 'Filter', 'Category', function ($scope, $routeParams, $location, Cate, Filter, Category) {
 
-        $scope.findMore = function (path) {
+        $scope.goto = function (path) {
             $location.path(path);
         };
 
@@ -90,7 +100,7 @@ var CateController = ['$scope', '$routeParams', '$location', 'Cate', 'Filter', '
 
 var CateDetailController = ['$scope', '$routeParams', '$location', 'Cate', 'Cart', function ($scope, $routeParams, $location, Cate, Cart) {
 
-        $scope.findMore = function (path) {
+        $scope.goto = function (path) {
             $location.path(path);
         };
         $scope.cart = Cart;
@@ -108,7 +118,7 @@ var CateDetailController = ['$scope', '$routeParams', '$location', 'Cate', 'Cart
 
 var HelpController = ['$scope', '$routeParams', '$location', 'Help', 'Filter', 'Category', function ($scope, $routeParams, $location, Help, Filter, Category) {
 
-        $scope.findMore = function (path) {
+        $scope.goto = function (path) {
             $location.path(path);
         };
 
@@ -127,7 +137,7 @@ var HelpController = ['$scope', '$routeParams', '$location', 'Help', 'Filter', '
 
 var HelpDetailController = ['$scope', '$routeParams', '$location', 'Help', 'Cart', function ($scope, $routeParams, $location, Help, Cart) {
 
-        $scope.findMore = function (path) {
+        $scope.goto = function (path) {
             $location.path(path);
         };
         $scope.cart = Cart;

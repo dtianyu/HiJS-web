@@ -50,7 +50,7 @@
                         <div class="panel-heading">
                             <h5 class="panel-title">
                                 <span class="title">金山生活-搜罗-金山美食</span>
-                                <button type="button" class="btn btn-xs btn-success right" ng-click="findMore('cate')">More</button> 
+                                <button type="button" class="btn btn-xs btn-success right" ng-click="goto('cate')">More</button> 
                             </h5>  
                         </div>
                         <div class="panel-body">
@@ -83,7 +83,7 @@
                         <div class="panel-heading">
                             <h6 class="panel-title">
                                 <span class="title">住在金山-寻帮忙-上金山生活</span>
-                                <button type="button" class="btn btn-xs btn-success right" ng-click="findMore('help')">More</button> 
+                                <button type="button" class="btn btn-xs btn-success right" ng-click="goto('help')">More</button> 
                             </h6>
                         </div>
                         <div class="panel-body">                
@@ -122,15 +122,16 @@
                 </a>
             </li>
             <li ng-repeat="k in storekind">
-                <a href="#/{{k.classname}}">{{k.name}}<span class="badge pull-right">{{k.storecount}}</span></a></li>
-            <li>
-                <a href="#">
-
-                </a>
+                <a href="#/{{k.classname}}">{{k.name}}<span class="badge pull-right">{{k.storecount}}</span></a>
             </li>
         </ul>
         <div id="webshortcuts"   ng-controller="WebLinksController">
-            <div class="panel">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h6 class="panel-title">
+                        <span class="title">快捷生活</span>                     
+                    </h6>
+                </div>     
                 <ul class="webshortcuts">
                     <li ng-repeat="link in webshortcuts">
                         <a href="{{link.url}}" target="_blank"><img ng-if="link.logo2" ng-src="img/{{link.logo2}}" alt="{{link.name}}"/></a><span>{{link.name}}</span>
@@ -138,7 +139,6 @@
                 </ul>
             </div>
         </div>
-    </div>
 
 
 

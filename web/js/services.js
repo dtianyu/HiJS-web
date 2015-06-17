@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-var home_url = "http://127.0.0.1:8480/HiJSRESTful/webresources";
+var home_url = "http://127.0.0.1:8080/HiJS-cart/app/";
 var home_api = "app/data";
 
 var key = "com.jinshanlife.cart";
@@ -16,108 +16,140 @@ appService.factory('Area', function ($resource) {
         town: {method: "GET", params: {Id: "town"}, isArray: true}
     });
 });
-appService.factory('Cart', function () {
-    return {
-        cartItems: [],
-        totalQty: 0,
-        totalAmts: 0,
-        add: function (item) {
-            var flag = true;
-            var o = this.create(item);
-            angular.forEach(this.cartItems, function (cartItem) {
-                if (cartItem.storeid === o.storeid && cartItem.id === o.id) {
-                    cartItem.qty += o.qty;
-                    flag = false;
+appService.factory('Cart', ['$http', function ($http) {
+        return {
+            phone: "",
+            contacter: "",
+            address: "",
+            cartItems: [],
+            totalQty: 0,
+            totalAmts: 0,
+            add: function (item) {
+                var flag = true;
+                var o = this.create(item);
+                angular.forEach(this.cartItems, function (cartItem) {
+                    if (cartItem.storeid === o.storeid && cartItem.itemid === o.itemid) {
+                        cartItem.qty += o.qty;
+                        cartItem.amts = cartItem.price * cartItem.qty;
+                        flag = false;
+                    }
+                });
+                if (flag) {
+                    o.amts = o.price * o.qty;
+                    this.cartItems.push(o);
                 }
-            });
-            if (flag) {
-                this.cartItems.push(o);
-            }
-            this.save();
-            this.sum();
-        },
-        create: function (item) {
-            var o = {"storeid": item.storeid, "id": item.id, "content": item.itemdesc, "price": item.price, "unit": item.unit, "qty": 1};
-            return o;
-        },
-        clear: function () {
-            if (this.cartItems.length > 0) {
-                this.cartItems.splice(0, this.cartItems.length);
                 this.save();
                 this.sum();
-            }
-        },
-        isEmpty: function () {
-            if (this.cartItems === undefined || this.cartItems.length === 0) {
-                return true;
-            } else {
-                return false;
-            }
-        },
-        init: function () {
-            var index;
-            var cartList = localStorage.getItem(key);
-            if (cartList === null || cartList === "") {
-                cartList = [];
-            } else {
-                cartList = JSON.parse(cartList);
-            }
-            for (var i = 0; i < cartList.length; i++)
-            {
-                index = this.cartItems.indexOf(cartList[i]);
-                if (index !== -1) {
-                    this.cartItems.push(cartList[i]);
+            },
+            create: function (item) {
+                var o = {"storeid": item.storeid, "userid": item.userid, "itemid": item.id, "content": item.itemdesc, "spec": item.itemspec, "price": item.price, "unit": item.unit, "qty": 1, "logo1": item.logo1};
+                return o;
+            },
+            clear: function () {
+                if (this.cartItems.length > 0) {
+                    this.cartItems.splice(0, this.cartItems.length);
+                    this.save();
+                    this.sum();
                 }
-            }
-        },
-        less: function (item) {
-            if (item !== null) {
-                var index = this.cartItems.indexOf(item);
-                if (index !== -1) {
-                    this.cartItems[index].qty -= 1;
-                    if (this.cartItems[index].qty === 0) {
-                        this.remove(item);
+            },
+            isEmpty: function () {
+                if (this.cartItems === undefined || this.cartItems.length === 0) {
+                    return true;
+                } else {
+                    return false;
+                }
+            },
+            init: function () {
+                var index;
+                var cartList = localStorage.getItem(key);
+                if (cartList === null || cartList === "") {
+                    cartList = [];
+                } else {
+                    cartList = JSON.parse(cartList);
+                }
+                for (var i = 0; i < cartList.length; i++)
+                {
+                    index = this.cartItems.indexOf(cartList[i]);
+                    if (index !== -1) {
+                        this.cartItems.push(cartList[i]);
                     }
-                    save();
-                    sum();
                 }
-            }
-        },
-        more: function (item) {
-            if (item !== null) {
+            },
+            less: function (item) {
+                if (item !== null) {
+                    var index = this.cartItems.indexOf(item);
+                    if (index !== -1) {
+                        this.cartItems[index].qty -= 1;
+                        this.cartItems[index].amts = this.cartItems[index].price * this.cartItems[index].qty;
+                        if (this.cartItems[index].qty === 0) {
+                            this.remove(item);
+                        }
+                        this.save();
+                        this.sum();
+                    }
+                }
+            },
+            more: function (item) {
+                if (item !== null) {
+                    var index = this.cartItems.indexOf(item);
+                    if (index !== -1) {
+                        this.cartItems[index].qty += 1;
+                        this.cartItems[index].amts = this.cartItems[index].price * this.cartItems[index].qty;
+                        this.save();
+                        this.sum();
+                    }
+                }
+            },
+            remove: function (item) {
                 var index = this.cartItems.indexOf(item);
                 if (index !== -1) {
-                    this.cartItems[index].qty += 1;
-                    save();
-                    sum();
+                    this.cartItems.splice(index, 1);
                 }
+                this.save();
+                this.sum();
+            },
+            save: function () {
+                localStorage.removeItem(key);
+                localStorage.setItem(key, JSON.stringify(this.cartItems));
+            },
+            sum: function () {
+                var qty = 0;
+                var amts = 0;
+                for (var i = 0; i < this.cartItems.length; i++)
+                {
+                    qty += this.cartItems[i].qty;
+                    amts += this.cartItems[i].amts;
+                }
+                this.totalQty = qty;
+                this.totalAmts = amts;
+            },
+            submit: function () {
+                if (this.isEmpty()) {
+                    alert("没有购物明细！");
+                    return false;
+                }
+                var validateReg = /^((\+?86)|(\(\+86\)))?1[3|4|5|8]\d{9}$/;
+                var value = $("#phone").val();
+                if (!validateReg.test(value)) {
+                    $('#phonePopover').popover('show');
+                    $('div.popover').on('click', function () {
+                        $(this).removeAttr('style');
+                    });
+                    return false;
+                }
+                var cartId = getCartId();
+                var url = home_url + 'ws.cart';
+                $http.post(url, this.cartItems)
+                        .success(function () {
+                            alert("提交成功！");
+                            window.location.href = "http://localhost:8080/HiJS-cart/cart.xhtml?cartid=" + cartId;
+                        })
+                        .error(function () {
+                            alert("提交失败，请重试！");
+                        });
             }
-        },
-        remove: function (item) {
-            var index = this.cartItems.indexOf(item);
-            if (index !== -1) {
-                this.cartItems.splice(index, 1);
-            }
-            this.save();
-            this.sum();
-        },
-        save: function () {
-            localStorage.removeItem(key);
-            localStorage.setItem(key, JSON.stringify(this.cartItems));
-        },
-        sum: function () {
-            var qty = 0;
-            var amts = 0;
-            for (var i = 0; i < this.cartItems.length; i++)
-            {
-                qty += this.cartItems[i].qty;
-                amts += this.cartItems[i].price * this.cartItems[i].qty;
-            }
-            this.totalQty = qty;
-            this.totalAmts = amts;
-        }
-    };
-});
+        };
+    }]);
 appService.factory('Cate', function ($resource) {
     return $resource("app/data/:Id.json", {}, {
         query: {method: "GET", params: {Id: "cate"}, isArray: true},
@@ -154,3 +186,11 @@ appService.factory('WebLinks', function ($resource) {
         shortcuts: {method: "GET", params: {Id: "Weblink2"}, isArray: true}
     });
 });
+
+var getCartId = function () {
+    return Math.round(new Date().getTime() / 1000);
+};
+
+var getTimestamp = function () {
+    return Math.round(new Date().getTime() / 100);
+};
