@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-var home_url = "http://127.0.0.1:8080/HiJS-cart/app/";
+var home_url = "http://localhost:8480/HiJS-cart/app";
 var home_api = "app/data";
 
 var key = "com.jinshanlife.cart";
@@ -42,7 +42,7 @@ appService.factory('Cart', ['$http', function ($http) {
                 this.sum();
             },
             create: function (item) {
-                var o = {"storeid": item.storeid, "userid": item.userid, "itemid": item.id, "content": item.itemdesc, "spec": item.itemspec, "price": item.price, "unit": item.unit, "qty": 1, "logo1": item.logo1};
+                var o = {"storeid": item.storeid, "userid": item.userid, "itemid": item.id, "content": item.itemdesc, "spec": item.itemspec, "price": item.price, "unit": item.unit, "qty": 1, "logo1": item.logo1, "remark": ""};
                 return o;
             },
             clear: function () {
@@ -138,15 +138,28 @@ appService.factory('Cart', ['$http', function ($http) {
                     return false;
                 }
                 var cartId = getCartId();
-                var url = home_url + 'ws.cart';
-                $http.post(url, this.cartItems)
+                var url = home_url + '/cart';
+                var url_detail = home_url + '/cartdetail';
+                var cart = {"cartid": cartId, "phone": this.phone, "contacter": this.contacter, "address": this.address, "remark": ""};
+                for (var i = 0; i < this.cartItems.length; i++)
+                {
+                    this.cartItems[i].cartid = cartId;
+                }
+                this.save();
+                var cartList = JSON.parse(localStorage.getItem(key));
+                $http.post(url, cart)
                         .success(function () {
-                            alert("提交成功！");
-                            window.location.href = "http://localhost:8080/HiJS-cart/cart.xhtml?cartid=" + cartId;
+                            $http.post(url_detail, cartList)
+                                    .success(function () {
+                                        window.location.href = "http://www.jinshanlife.com/HiJS-store";
+                                    }).error(function () {
+
+                            });
                         })
                         .error(function () {
                             alert("提交失败，请重试！");
                         });
+
             }
         };
     }]);
