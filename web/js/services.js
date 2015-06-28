@@ -9,18 +9,22 @@ var home_api = "app/data";
 
 var key = "com.jinshanlife.cart";
 
-var appService = angular.module('appService', ['ngResource']);
+var appServices = angular.module('appServices', ['ngResource']);
 
-appService.factory('Area', function ($resource) {
+appServices.factory('Area', function ($resource) {
     return $resource("app/data/:Id.json", {}, {
         town: {method: "GET", params: {Id: "town"}, isArray: true}
     });
 });
-appService.factory('Cart', ['$http', function ($http) {
+appServices.factory('Cart', ['$http', function ($http) {
         return {
             phone: "",
             contacter: "",
             address: "",
+            recdate: "",
+            rectime: "",
+            rechour: new Date().getHours(),
+            recmin: new Date().getMinutes(),
             cartItems: [],
             totalQty: 0,
             totalAmts: 0,
@@ -58,6 +62,13 @@ appService.factory('Cart', ['$http', function ($http) {
                 } else {
                     return false;
                 }
+            },
+            isRecValidate: function () {
+                if (this.rechour < 0 || this.rechour > 24)
+                    return false;
+                if (this.recmin < 0 || this.recmin > 59)
+                    return false;
+                return true;
             },
             init: function () {
                 var index;
@@ -137,10 +148,24 @@ appService.factory('Cart', ['$http', function ($http) {
                     });
                     return false;
                 }
+                this.rectime = "1970-01-01T";
+                if (this.rechour<10){
+                    this.rectime = this.rectime + "0" + this.rechour.toString() + ":";
+                }else{
+                    this.rectime = this.rectime + this.rechour.toString() + ":";
+                }
+                if (this.recmin<10){
+                    this.rectime = this.rectime + "0" + this.recmin + ":00+08:30";
+                }else{
+                    this.rectime = this.rectime  + this.recmin + ":00+08:30";
+                }               
+                var doAfterSubmit = function () {
+                    this.clear();
+                };
                 var cartId = getCartId();
                 var url = home_url + '/cart';
                 var url_detail = home_url + '/cartdetail';
-                var cart = {"cartid": cartId, "phone": this.phone, "contacter": this.contacter, "address": this.address, "remark": ""};
+                var cart = {"cartid": cartId, "phone": this.phone, "contacter": this.contacter, "address": this.address, "recdate": this.recdate, "rectime": this.rectime, "remark": ""};
                 for (var i = 0; i < this.cartItems.length; i++)
                 {
                     this.cartItems[i].cartid = cartId;
@@ -151,49 +176,60 @@ appService.factory('Cart', ['$http', function ($http) {
                         .success(function () {
                             $http.post(url_detail, cartList)
                                     .success(function () {
+                                        alert("提交成功!");
                                         window.location.href = "http://www.jinshanlife.com/HiJS-store";
+                                        doAfterSubmit();
                                     }).error(function () {
-
+                                alert("提交失败，请重试!");
                             });
                         })
                         .error(function () {
-                            alert("提交失败，请重试！");
+                            alert("提交失败，请重试!");
                         });
 
+            },
+            unSubmit: function (o) {
+                if (this.isEmpty()) {
+                    return true;
+                }
+                if (!this.isRecValidate()) {
+                    return true;
+                }
+                return o;
             }
         };
     }]);
-appService.factory('Cate', function ($resource) {
+appServices.factory('Cate', function ($resource) {
     return $resource("app/data/:Id.json", {}, {
         query: {method: "GET", params: {Id: "cate"}, isArray: true},
         top: {method: "GET", params: {Id: "cateTop"}, isArray: true}
     });
 });
-appService.factory('Category', function ($resource) {
+appServices.factory('Category', function ($resource) {
     return $resource("app/data/:Id.json", {}, {
         cate: {method: "GET", params: {Id: "cateCategory"}, isArray: true},
         help: {method: "GET", params: {Id: "helpCategory"}, isArray: true}
     });
 });
-appService.factory('Filter', function () {
+appServices.factory('Filter', function () {
     return{
         filterDetail: {},
         filters: [],
         searchText: ''
     };
 });
-appService.factory('Help', function ($resource) {
+appServices.factory('Help', function ($resource) {
     return $resource("app/data/:Id.json", {}, {
         query: {method: "GET", params: {Id: "help"}, isArray: true},
         top: {method: "GET", params: {Id: "helpTop"}, isArray: true}
     });
 });
-appService.factory('StoreKind', function ($resource) {
+appServices.factory('StoreKind', function ($resource) {
     return $resource("app/data/:Id.json", {}, {
         query: {method: 'GET', params: {Id: 'storekind'}, isArray: true}
     });
 });
-appService.factory('WebLinks', function ($resource) {
+appServices.factory('WebLinks', function ($resource) {
     return $resource("app/data/:Id.json", {}, {
         links: {method: "GET", params: {Id: "Weblink"}, isArray: true},
         shortcuts: {method: "GET", params: {Id: "Weblink2"}, isArray: true}

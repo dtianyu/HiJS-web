@@ -27,6 +27,14 @@ li{
     background-color: #dd4814;
 }
 
+#topHead a{
+    display: inline-block;
+    width: 40px;
+    color: white;
+    line-height: 1.8em;
+    float: right;
+}
+
 #topInfo{
     margin-bottom: 20px;
 }

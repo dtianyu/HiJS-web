@@ -77,7 +77,7 @@
                             </h5>                            
                         </li>
                         <li class="active">
-                            <button type="button" class="btn btn-success btn-xs cart-submit" ng-disabled="cart.isEmpty()" ng-click="">提交</button>
+                            <button type="button" class="btn btn-success btn-xs cart-submit" ng-disabled="cart.isEmpty()" ng-click="goto('cart')">提交</button>
                             <a>共{{cart.totalAmts| currency}}元</a>
                         </li>
                     </ul>

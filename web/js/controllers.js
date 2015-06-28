@@ -11,6 +11,11 @@ var CartController = ['$scope', 'Cart', function ($scope, Cart) {
         $scope.cart = Cart;
         $scope.cart.init();
         $scope.cart.sum();
+        $scope.currentDate ='';
+        $scope.updateDate = function(date){
+            //alert(date);
+            $scope.cart.recdate=date + "T00:00:00+08:00";
+        };
     }];
 
 var FilterController = ['$scope', 'Filter', 'Area', function ($scope, Filter, Area) {

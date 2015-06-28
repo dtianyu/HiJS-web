@@ -60,9 +60,27 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label for="recdate" class="col-sm-2 control-label">预约日期</label>
+                                    <div class="col-sm-2">
+                                        <input type="text" class="form-control" id="recdate" datepicker select="updateDate(date)"
+                                               placeholder="预约日期" ng-model="$parent.currentDate" required="true"/>
+                                    </div>
+                                    <label for="rechour" class="col-sm-2 control-label">预约时间</label>
+                                    <div class="col-sm-2 text-center">
+                                        <input type="text" class=" form-control" id="rechour" style="text-align: right;"
+                                               placeholder="小时" ng-model="cart.rechour" required="true"/>                                      
+                                    </div>
+                                    <label class="col-sm-1 control-label" style="text-align: left;">点</label>
+                                    <div class="col-sm-2 text-center">
+                                        <input type="text" class="form-control" id="recmin" style="text-align: right;"
+                                               placeholder="分钟" ng-model="cart.recmin" required="true"/>
+                                    </div>
+                                    <label class="col-sm-1 control-label" style="text-align: left;">分</label>
+                                </div>
+                                <div class="form-group">
                                     <div class="col-sm-offset-2 col-sm-10">
                                         <h4 class="text-primary text-right">共{{cart.totalAmts| currency}}元</h4>
-                                        <button type="button" class="btn btn-success btn-default right" ng-disabled="form.$invalid" ng-click="cart.submit();">提交</button>
+                                        <button type="button" class="btn btn-success btn-default right" ng-disabled="cart.unSubmit(form.$invalid);" ng-click="cart.submit();">提交</button>
                                     </div>
                                 </div>
                             </form>
