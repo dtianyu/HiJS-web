@@ -25,20 +25,31 @@ appServices.factory('Cart', ['$http', function ($http) {
             rectime: "",
             rechour: new Date().getHours(),
             recmin: new Date().getMinutes(),
+            freightfree: 0.0,
+            freight: 0.0,
             cartItems: [],
             totalQty: 0,
             totalAmts: 0,
-            add: function (item) {
+            add: function (item, ff, f) {
+                if (!ff || !f)
+                    return;
+                this.freightfree = ff;
+                this.freight = f;
                 var flag = true;
+                var diffStore = true;
                 var o = this.create(item);
                 angular.forEach(this.cartItems, function (cartItem) {
+                    if (cartItem.storeid !== o.storeid) {
+                        diffStore = false;
+                        alert("暂时不支持多个商家同时下单");
+                    }
                     if (cartItem.storeid === o.storeid && cartItem.itemid === o.itemid) {
                         cartItem.qty += o.qty;
                         cartItem.amts = cartItem.price * cartItem.qty;
                         flag = false;
                     }
                 });
-                if (flag) {
+                if (flag === diffStore) {
                     o.amts = o.price * o.qty;
                     this.cartItems.push(o);
                 }
@@ -133,8 +144,12 @@ appServices.factory('Cart', ['$http', function ($http) {
                 }
                 this.totalQty = qty;
                 this.totalAmts = amts;
+                if (this.totalAmts >= this.freightfree) {
+                    this.freight = 0;
+                }
             },
             submit: function () {
+                var _this = this;
                 if (this.isEmpty()) {
                     alert("没有购物明细！");
                     return false;
@@ -149,23 +164,25 @@ appServices.factory('Cart', ['$http', function ($http) {
                     return false;
                 }
                 this.rectime = "1970-01-01T";
-                if (this.rechour<10){
+                if (this.rechour < 10) {
                     this.rectime = this.rectime + "0" + this.rechour.toString() + ":";
-                }else{
+                } else {
                     this.rectime = this.rectime + this.rechour.toString() + ":";
                 }
-                if (this.recmin<10){
+                if (this.recmin < 10) {
                     this.rectime = this.rectime + "0" + this.recmin + ":00+08:30";
-                }else{
-                    this.rectime = this.rectime  + this.recmin + ":00+08:30";
-                }               
+                } else {
+                    this.rectime = this.rectime + this.recmin + ":00+08:30";
+                }
                 var doAfterSubmit = function () {
-                    this.clear();
+                    //alert('Begin Clear');
+                    _this.clear();
+                    //alert('End Clear');
                 };
                 var cartId = getCartId();
                 var url = home_url + '/cart';
                 var url_detail = home_url + '/cartdetail';
-                var cart = {"cartid": cartId, "phone": this.phone, "contacter": this.contacter, "address": this.address, "recdate": this.recdate, "rectime": this.rectime, "remark": ""};
+                var cart = {"cartid": cartId, "phone": this.phone, "contacter": this.contacter, "address": this.address, "recdate": this.recdate, "rectime": this.rectime, "amts": this.totalAmts, "freight": this.freight, "remark": ""};
                 for (var i = 0; i < this.cartItems.length; i++)
                 {
                     this.cartItems[i].cartid = cartId;
@@ -177,8 +194,8 @@ appServices.factory('Cart', ['$http', function ($http) {
                             $http.post(url_detail, cartList)
                                     .success(function () {
                                         alert("提交成功!");
-                                        window.location.href = "http://www.jinshanlife.com/HiJS-store";
                                         doAfterSubmit();
+                                        window.location.href = "http://www.jinshanlife.com/HiJS-store";
                                     }).error(function () {
                                 alert("提交失败，请重试!");
                             });
