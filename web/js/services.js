@@ -25,14 +25,16 @@ appServices.factory('Cart', ['$http', function ($http) {
             rectime: "",
             rechour: new Date().getHours(),
             recmin: new Date().getMinutes(),
+            storeid:0,
             freightfree: 0.0,
             freight: 0.0,
             cartItems: [],
             totalQty: 0,
             totalAmts: 0,
             add: function (item, ff, f) {
-                if (!ff || !f)
+                if (ff===undefined || f===undefined){
                     return;
+                }
                 this.freightfree = ff;
                 this.freight = f;
                 var flag = true;
@@ -50,6 +52,7 @@ appServices.factory('Cart', ['$http', function ($http) {
                     }
                 });
                 if (flag === diffStore) {
+                    this.storeid = o.storeid;
                     o.amts = o.price * o.qty;
                     this.cartItems.push(o);
                 }
@@ -182,7 +185,7 @@ appServices.factory('Cart', ['$http', function ($http) {
                 var cartId = getCartId();
                 var url = home_url + '/cart';
                 var url_detail = home_url + '/cartdetail';
-                var cart = {"cartid": cartId, "phone": this.phone, "contacter": this.contacter, "address": this.address, "recdate": this.recdate, "rectime": this.rectime, "amts": this.totalAmts, "freight": this.freight, "remark": ""};
+                var cart = {"cartid": cartId,"storeid":this.storeid, "phone": this.phone, "contacter": this.contacter, "address": this.address, "recdate": this.recdate, "rectime": this.rectime, "amts": this.totalAmts, "freight": this.freight, "remark": ""};
                 for (var i = 0; i < this.cartItems.length; i++)
                 {
                     this.cartItems[i].cartid = cartId;

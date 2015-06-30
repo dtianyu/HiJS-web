@@ -7,12 +7,21 @@
 
 $(document).ready(function () {
 
-//菜单自动弹出
+    //菜单自动弹出
     $("li.dropdown").hover(function () {
         $(this).removeClass("dropdown").addClass("dropdown open");
     }, function () {
         $(this).removeClass("dropdown open").addClass("dropdown");
     });
+    //回到顶部
+    window.onscroll = function () {   
+        if (window.scrollY > 200){
+            $('#backtop').removeClass('nodisplay');
+        }else{
+            $('#backtop').addClass('nodisplay');
+        };
+    };
+ 
     //$("body").load(initMap());//载入地图
 //    var t = 120;
 //    var u = 119;

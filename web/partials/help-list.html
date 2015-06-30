@@ -5,7 +5,7 @@
                 <div class="row" style=" padding-top: 5px;padding-bottom: 5px;">                   
                     <ul>
                         <li class="title"><a class="text-primary">搜索</a></li>
-                        <li><input style="min-width: 400px;" ng-model="doFilter.searchText"/></li>
+                        <li><input style="width: 400px;" ng-model="doFilter.searchText"/></li>
                         <li class="text-primary" style="float: right;padding-right: 20px;">排序<small>
                                 <input type="radio" ng-model="orderProp" value="idx" class="orderProp"/>人气
                                 <input type="radio" ng-model="orderProp" value="pcc" class="orderProp"/>人均消费
@@ -47,7 +47,7 @@
                 </div>
                 <div class="panel-body">
                     <ul>
-                        <li ng-repeat="store in stores| filter: doFilter.filterDetail | orderBy:orderProp" style="float: left;padding: 2px;">
+                        <li ng-repeat="store in stores| filter: doFilter.filterDetail | filter:doFilter.searchText | orderBy:orderProp" style="float: left;padding: 2px;">
                             <div class="profile">
                                 <div class="thumbnail">
                                     <img ng-if="store.logo2" ng-src="app/img/{{store.userid}}/{{store.logo2}}" alt="{{store.name}}">

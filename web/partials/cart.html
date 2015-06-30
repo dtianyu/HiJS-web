@@ -22,7 +22,7 @@
                                         <img ng-if="!item.logo1" ng-src="app/img/logo1.png" alt="{{item.content}}"/>
                                     </div>
                                     <div class="text">
-                                        <p><span class="title">{{item.content}}</span><span class="title">价格:</span><strong>{{item.price}}</strong>{{item.unit}}
+                                        <p><span class="title">{{item.content}}</span><span class="title">价格:</span><strong>{{item.price}}</strong>元/{{item.unit}}
                                             <button type="button" class="btn btn-primary btn-xs right " ng-click="cart.remove(item)">删除</button>  
                                             <span class="cart-qty">
                                                 <a class="less" ng-click="cart.less(item)">-</a>
@@ -31,7 +31,7 @@
                                                 <span class="Pleft8 Pright8"><strong>{{item.amts}}元</strong></span>
                                             </span>
                                         </p>                    
-                                        <p><span class="title">特色:</span>{{item.spec}}</p>
+                                        <p><span class="title">说明:</span>{{item.spec}}</p>
                                         <p><input type="text" class="form-control"  ng-model="item.remark" placeholder="备注"/></p>
                                     </div>                          
                                 </div>

@@ -7,6 +7,10 @@ li{
     padding-top: 3px;    
 }
 
+.nodisplay{
+    display: none;
+}
+
 .right{
     float: right;
 }
@@ -17,6 +21,10 @@ li{
 
 .Pleft8{
     padding-left: 8px; 
+}
+
+.Pright8{
+    padding-right: 8px;
 }
 
 /*-------------------------------网站整体布局*/
@@ -358,3 +366,12 @@ li div.profile span.title{
     margin-top: 14px;
 }
 
+a.backtop{
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 70px;
+    height: 70px;
+    background:transparent url("../img/backtotop.png") no-repeat scroll center center;
+    z-index: 999;
+}
