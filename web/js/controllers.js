@@ -11,10 +11,10 @@ var CartController = ['$scope', 'Cart', function ($scope, Cart) {
         $scope.cart = Cart;
         $scope.cart.init();
         $scope.cart.sum();
-        $scope.currentDate ='';
-        $scope.updateDate = function(date){
+        $scope.currentDate = '';
+        $scope.updateDate = function (date) {
             //alert(date);
-            $scope.cart.recdate=date + "T00:00:00+08:00";
+            $scope.cart.recdate = date + "T00:00:00+08:00";
         };
     }];
 
@@ -155,6 +155,10 @@ var HelpDetailController = ['$scope', '$routeParams', '$location', 'Help', 'Cart
         $scope.cart.init();
         $scope.cart.sum();
 
+    }];
+
+var StoreKindController = ['$scope', 'StoreKind', function ($scope, StoreKind) {
+        $scope.storekind = StoreKind.query();
     }];
 
 var WebLinksController = ['$scope', 'WebLinks', function ($scope, WebLinks) {

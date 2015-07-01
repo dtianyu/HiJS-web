@@ -172,13 +172,55 @@ li{
 .webshortcuts li span{
     font-size: 15px;
 }
+/*------------------------------------------导航信息*/
 
 .filter li a{
-    min-width: 60px;
+    min-width: 80px;
     height: 26px; 
 }
 
-/*------------------------------------------导航信息*/
+.filter li a.filters{
+    min-width: 100px;
+    border: 1px solid #ddd;
+}
+
+.filter li a.filters i {
+    position: absolute;
+    width: 25px;
+    height: 22px;
+    background: url('../img/i.png') no-repeat 7px -140px;
+}
+
+.carousel{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.carousel .carousel-control{
+    display: block;
+    top:45%;
+    width: 40px;
+    height: 40px;
+    font-size: 60px;
+    font-weight: 100;
+    text-align: center;
+    line-height: 24px;
+    background: none repeat scroll 0% 0% #222;
+    border: 3px solid #FFF;
+    border-radius: 23px;
+}
+
+.carousel .carousel-caption{
+    background: none repeat scroll 0% 0% #222;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    opacity: 0.5;
+}
+
+.carousel .carousel-indicators{             
+    bottom: 2px;
+}
 
 #cart-detail{
     width: 100%;

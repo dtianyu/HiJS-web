@@ -58,8 +58,10 @@
                                 <li ng-repeat="store in catestores" style="float: left;padding: 2px;">
                                     <div class="profile">
                                         <div class="thumbnail">
-                                            <img ng-if="store.logo2" ng-src="app/img/{{store.userid}}/{{store.logo2}}" alt="{{store.name}}">
-                                            <img ng-if="!store.logo2" ng-src="app/img/{{store.category}}.png" alt="{{store.name}}">                                
+                                            <a href="#/cate/{{store.id}}">
+                                                <img ng-if="store.logo2" ng-src="app/img/{{store.userid}}/{{store.logo2}}" alt="{{store.name}}">
+                                                <img ng-if="!store.logo2" ng-src="app/img/{{store.category}}.png" alt="{{store.name}}">
+                                            </a>                                
                                         </div>
                                         <div class="caption">
                                             <h5> 
@@ -91,8 +93,10 @@
                                 <li ng-repeat="store in helpstores" style="float: left;padding: 2px;">
                                     <div class="profile">
                                         <div class="thumbnail">
-                                            <img ng-if="store.logo2" ng-src="app/img/{{store.userid}}/{{store.logo2}}" alt="{{store.name}}">
-                                            <img ng-if="!store.logo2" ng-src="app/img/{{store.category}}.png" alt="{{store.name}}">
+                                            <a href="#/help/{{store.id}}">
+                                                <img ng-if="store.logo2" ng-src="app/img/{{store.userid}}/{{store.logo2}}" alt="{{store.name}}">
+                                                <img ng-if="!store.logo2" ng-src="app/img/{{store.category}}.png" alt="{{store.name}}">
+                                            </a>
                                         </div>
                                         <div class="caption">
                                             <h5>
@@ -125,6 +129,33 @@
                 <a href="#/{{k.classname}}">{{k.name}}<span class="badge pull-right">{{k.storecount}}</span></a>
             </li>
         </ul>
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <!-- 轮播（Carousel）指标 -->
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+                <li data-target="#myCarousel" data-slide-to="3"></li>
+            </ol>   
+            <!-- 轮播（Carousel）项目 -->
+            <div class="carousel-inner">
+                <div class="item active">
+                    <img src="img/slider-0.jpg" alt="First slide"/>
+                </div>
+                <div class="item">
+                    <img src="img/slider-1.jpg" alt="Second slide"/>
+                </div>
+                <div class="item">
+                    <img src="img/slider-2.jpg" alt="Third slide"/>
+                </div>
+                <div class="item">
+                    <img src="img/slider-3.jpg" alt="Third slide"/>
+                </div>
+            </div>
+            <!-- 轮播（Carousel）导航 -->
+                <a class="carousel-control left" href="javascript:void(0);" onclick="$('#myCarousel').carousel('prev');">&lsaquo;</a>
+                <a class="carousel-control right" href="javascript:void(0);" onclick="$('#myCarousel').carousel('next');">&rsaquo;</a>
+        </div>
         <div id="webshortcuts"   ng-controller="WebLinksController">
             <div class="panel panel-primary">
                 <div class="panel-heading">
