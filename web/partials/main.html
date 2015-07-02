@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-9" >
-        <div id="topSearch">
+        <div id="topSearch" class="hidden-xs">
             <div class="search_form">
                 <form name="search_form1" method="get" action="http://www.baidu.com/baidu" target="_blank" >
                     <input type="hidden" value="0" name="myselectvalue">
@@ -24,7 +24,7 @@
                 </form>    
             </div>
         </div>   
-        <div id="topNav">
+        <div id="topNav" class="hidden-xs">
             <div id="weblinks" ng-controller="WebLinksController">
                 <div class="panel">
                     <ul class="weblinks">
@@ -125,7 +125,7 @@
                     首页
                 </a>
             </li>
-            <li ng-repeat="k in storekind">
+            <li ng-repeat="k in storekind" ng-controller="StoreKindController">
                 <a href="#/{{k.classname}}">{{k.name}}<span class="badge pull-right">{{k.storecount}}</span></a>
             </li>
         </ul>
@@ -153,10 +153,10 @@
                 </div>
             </div>
             <!-- 轮播（Carousel）导航 -->
-                <a class="carousel-control left" href="javascript:void(0);" onclick="$('#myCarousel').carousel('prev');">&lsaquo;</a>
-                <a class="carousel-control right" href="javascript:void(0);" onclick="$('#myCarousel').carousel('next');">&rsaquo;</a>
+            <a class="carousel-control left" href="javascript:void(0);" onclick="$('#myCarousel').carousel('prev');">&lsaquo;</a>
+            <a class="carousel-control right" href="javascript:void(0);" onclick="$('#myCarousel').carousel('next');">&rsaquo;</a>
         </div>
-        <div id="webshortcuts"   ng-controller="WebLinksController">
+        <div id="webshortcuts"   ng-controller="WebLinksController" class="hidden-xs">
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h6 class="panel-title">
@@ -170,6 +170,5 @@
                 </ul>
             </div>
         </div>
-
-
-
+    </div>
+</div>

@@ -27,7 +27,7 @@ li{
     padding-right: 8px;
 }
 
-/*-------------------------------网站整体布局*/
+/*Main Frame Style*/
 #topHead{
     margin: auto;
     display: block;
@@ -66,9 +66,9 @@ li{
     border-top:  #DD4814 solid 5px;
     text-align: center;
 }
-/*-------------------------------网站整体布局*/
+/*Main Frame Style*/
 
-/*------------------------------百度搜索框*/
+/*Baidu Search Style*/
 .search_form{
     display: block;
     width: 100%;
@@ -111,9 +111,9 @@ li{
     border: none;
     margin-left: -4px;
 }
-/*------------------------------百度搜索框*/
+/*Baidu Search Style*/
 
-/*------------------------------------------导航信息*/
+/*Weblink Style*/
 #weblinks div.panel,#webshortcuts div.panel{
     height: 182px;
     border: #DD4814 1px solid;
@@ -172,7 +172,7 @@ li{
 .webshortcuts li span{
     font-size: 15px;
 }
-/*------------------------------------------导航信息*/
+/*Weblink Style*/
 
 .filter li a{
     min-width: 80px;
@@ -222,20 +222,29 @@ li{
     bottom: 2px;
 }
 
+/*Cart Style*/
 #cart-detail{
     width: 100%;
 }
 
-.cart-go{
-    margin-top: -10px;
-    /* width: 50px; */
-    float: right;
+#cart-detail li.cart-content{
+    display:block;
+    /*height: 36px;*/
+}
+
+.cart-logo{
+    display:inline-block;
+    background-image: url('../img/cart.png');
+    background-repeat: no-repeat;
+    width: 22px;
+    height: 22px;
+    margin-bottom: -4px;
+    margin-right: 10px;
 }
 
 .cart-add{
     float: right;
     margin-top: 16px;
-    margin-right: 30px;
 }
 
 .cart-clear{
@@ -243,27 +252,23 @@ li{
     margin-top: 8px;
     margin-right: 8px;
     float: right;
-    z-index: 9;
+    z-index: 9999;
 }
 
 .cart-del{
-    position: relative;
-    padding: 2px;
-    margin-top: 6px;
-    float: right;
-    z-index: 9;
+    float: right; 
+    z-index: 9999;
 }
 
 .cart-qty{
-    margin-right:10px;
-    float: right;
+    padding: 2px;
+    float: right; 
 }
 
 .cart-qty .less,.cart-qty .more{
     display: inline-block;
-    width: 12px;
-    margin-left: 3px;
-    margin-right: 3px;
+    width: 16px;
+    padding: 2px 1px 2px 1px;
     border: #DD4814 solid 1px;
     text-align: center;
     text-decoration: none;
@@ -273,9 +278,10 @@ li{
     position:relative;
     float: right;    
     margin-top: 8px;
-    margin-right: 10px;
-    z-index: 99;
+    margin-right: 8px;
+    z-index: 9999;
 }
+/*Cart Style*/
 
 input.orderProp{
     margin-left: 5px;
@@ -327,13 +333,12 @@ li div.profile span.title{
     padding-left: 8px; 
 }
 
-
 .panel-title span{
     display: inline-block;
 }
 
 .panel-title span.title{
-    min-width: 160px;    
+    width: 160px;    
 }
 
 .panel-title small{
@@ -341,7 +346,7 @@ li div.profile span.title{
 }
 
 .panel-body .pic{
-    float: left;
+    float: left; 
     background-color: transparent;
 }
 
@@ -351,7 +356,7 @@ li div.profile span.title{
 }
 
 .panel-body .text{
-    margin-left: 80px;
+    margin-left: 80px; 
 }
 
 .panel-body h5{
@@ -400,12 +405,6 @@ li div.profile span.title{
 
 .nav-pills .navbar-toggle .icon-bar {
     background-color: #dd4814;
-}
-
-.cartLogo{
-    background-image: url('../img/cart.png');
-    background-repeat: no-repeat;
-    margin-top: 14px;
 }
 
 a.backtop{

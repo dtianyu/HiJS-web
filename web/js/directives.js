@@ -35,6 +35,7 @@ appDirectives.directive("datepicker",
                     var optDate ={};
                     
                     optDate.dateFormat ='yy-mm-dd';
+                    
                     var updateModel = function(dateText){
                         scope.$apply(function(){
                             ngModel.$setViewValue(dateText);
