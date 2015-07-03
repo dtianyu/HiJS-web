@@ -74,14 +74,41 @@ var FilterController = ['$scope', 'Filter', 'Area', function ($scope, Filter, Ar
 
     }];
 
-var MainController = ['$scope', '$routeParams', '$location', 'Cate', 'Help', 'StoreKind', function ($scope, $routeParams, $location, Cate, Help, StoreKind) {
+var BeautyController = ['$scope', '$routeParams', '$location', 'Beauty', 'Filter', 'Category', function ($scope, $routeParams, $location, Beauty, Filter, Category) {
 
         $scope.goto = function (path) {
             $location.path(path);
         };
-        $scope.storekind = StoreKind.query();
-        $scope.catestores = Cate.top();
-        $scope.helpstores = Help.top();
+
+        $scope.doFilter = Filter;
+        $scope.store;
+        $scope.stores = Beauty.query();
+        if ($routeParams.Id !== undefined) {
+            $scope.store = Beauty.get({Id: $routeParams.Id});
+        }
+        $scope.orderProp = "idx";
+        var storeId = $routeParams.storeId;
+
+        $scope.category = Category.beauty();
+
+    }];
+
+var BeautyDetailController = ['$scope', '$routeParams', '$location', 'Beauty', 'Cart', function ($scope, $routeParams, $location, Beauty, Cart) {
+
+        $scope.goto = function (path) {
+            $location.path(path);
+        };
+        $scope.cart = Cart;
+        $scope.store;
+        if ($routeParams.Id !== undefined) {
+            $scope.store = Beauty.get({Id: $routeParams.Id});
+        }
+        var storeId = $routeParams.Id;
+        $scope.orderProp = "idx";
+
+        $scope.cart.init();
+        $scope.cart.sum();
+
     }];
 
 var CateController = ['$scope', '$routeParams', '$location', 'Cate', 'Filter', 'Category', function ($scope, $routeParams, $location, Cate, Filter, Category) {
@@ -155,6 +182,16 @@ var HelpDetailController = ['$scope', '$routeParams', '$location', 'Help', 'Cart
         $scope.cart.init();
         $scope.cart.sum();
 
+    }];
+
+var MainController = ['$scope', '$location', 'Cate', 'Help', 'Beauty', function ($scope, $location, Cate, Help, Beauty) {
+
+        $scope.goto = function (path) {
+            $location.path(path);
+        };
+        $scope.catestores = Cate.top();
+        $scope.helpstores = Help.top();
+        $scope.beautystores = Beauty.top();
     }];
 
 var StoreKindController = ['$scope', 'StoreKind', function ($scope, StoreKind) {

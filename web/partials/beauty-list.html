@@ -41,28 +41,28 @@
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h6 class="panel-title">
-                    <span class="title">金山生活-寻帮忙很简单</span>
+                    <span class="title">金山生活-美妆美发-美丽你的人生</span>
                 </h6>
             </div>
             <div class="panel-body">
                 <ul>
-                    <li ng-repeat="store in stores| filter: doFilter.filterDetail | filter:doFilter.searchText | orderBy:orderProp" style="float: left;padding: 2px;">
+                    <li ng-repeat="store in stores| filter: doFilter.filterDetail| filter:doFilter.searchText | orderBy:orderProp" style="float: left;padding: 2px;">
                         <div class="profile">
                             <div class="thumbnail">
-                                <a href="#/help/{{store.id}}">
+                                <a href="#/cate/{{store.id}}">
                                     <img ng-if="store.logo2" ng-src="app/img/{{store.userid}}/{{store.logo2}}" alt="{{store.name}}">
                                     <img ng-if="!store.logo2" ng-src="app/img/{{store.category}}.png" alt="{{store.name}}">
                                 </a>
                             </div>
                             <div class="caption">
-                                <h5>
-                                    <a href="#/help/{{store.id}}">{{store.name}}</a>                              
-                                </h5> 
+                                <h5> 
+                                    <a href="#/beauty/{{store.id}}">{{store.name}}</a><span class="title" ng-if="store.pcc">人均:<strong>{{store.pcc}}</strong>元</span>                             
+                                </h5>
                                 <p>  
                                     <span class="content-stars-rank content-stars-{{store.hot}}"></span>
                                 </p>
                                 <h6 class="title">地区:<strong>{{store.town}}</strong><strong>{{store.phone}}</strong></h6>   
-                                <h6 class="title">专长:<span>{{store.feature}}</span></h6>
+                                <h6 class="title">特色:<span>{{store.feature}}</span></h6>
                                 <span class="label label-primary title">{{store.action}}</span>
                             </div>
                         </div>
@@ -111,7 +111,7 @@
         </div>
         <div class="hidden-xs">
             <div qrcode class="text-center"></div>
-        </div>         
+        </div>
         <hr>
         广告承租!
     </div>

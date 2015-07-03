@@ -5,7 +5,7 @@
  */
 
 
-var appDirectives = angular.module('appDirectives',[]);
+var appDirectives = angular.module('appDirectives', []);
 
 appDirectives.directive("showTab",
         function () {
@@ -23,41 +23,53 @@ appDirectives.directive("showTab",
 appDirectives.directive("datepicker",
         function () {
             return{
-                restrict:'A',
-                require:'?ngModel',
-                scope:{
-                    select:'&'
+                restrict: 'A',
+                require: '?ngModel',
+                scope: {
+                    select: '&'
                 },
-                link:function(scope,element,attrs,ngModel){
-                   
-                    if(!ngModel) return;
-                    
-                    var optDate ={};
-                    
-                    optDate.dateFormat ='yy-mm-dd';
-                    
-                    var updateModel = function(dateText){
-                        scope.$apply(function(){
+                link: function (scope, element, attrs, ngModel) {
+
+                    if (!ngModel)
+                        return;
+
+                    var optDate = {};
+
+                    optDate.dateFormat = 'yy-mm-dd';
+
+                    var updateModel = function (dateText) {
+                        scope.$apply(function () {
                             ngModel.$setViewValue(dateText);
                         });
                     };
-                    
-                    optDate.onSelect = function(dateText,picker){
-                        updateModel(dateText);                       
-                        if(scope.select){
-                            scope.$apply(function(){
-                                scope.select({date:dateText});
+
+                    optDate.onSelect = function (dateText, picker) {
+                        updateModel(dateText);
+                        if (scope.select) {
+                            scope.$apply(function () {
+                                scope.select({date: dateText});
                             });
-                        };
+                        }
+                        ;
                     };
-                    
-                    ngModel.$render = function(){
-                        element.datepicker('setDate',ngModel.$viewValue || '');                        
+
+                    ngModel.$render = function () {
+                        element.datepicker('setDate', ngModel.$viewValue || '');
                     };
-                    
+
                     element.datepicker(optDate);
                 }
             };
 
+        });
+
+
+appDirectives.directive("qrcode",
+        function () {
+            return{
+                link: function (scope, element, attrs) {
+                    element.qrcode({width:200,height:200,text:window.location.href});
+                }
+            };
         });
 

@@ -38,10 +38,13 @@
         <div id="content">
             <ul id="myTab" class="nav nav-tabs">
                 <li class="active">
-                    <a href="#cateTab" data-toggle="tab" show-tab><h5>美食外卖</h5></a>
+                    <a show-tab href="#cateTab" data-toggle="tab" ><h5>美食外卖</h5></a>
                 </li>
                 <li>
-                    <a href="#helpTab" data-toggle="tab" show-tab><h5>同城服务</h5></a>
+                    <a show-tab href="#helpTab" data-toggle="tab" ><h5>同城服务</h5></a>
+                </li>
+                <li>
+                    <a show-tab href="#beautyTab" data-toggle="tab"><h5>美妆美发</h5></a>
                 </li>
             </ul>
             <div id="myTabContent" class="tab-content">
@@ -107,6 +110,41 @@
                                             </p> 
                                             <h6 class="title">地区:<strong>{{store.town}}</strong><strong>{{store.phone}}</strong></h6>
                                             <h6 class="title">专长:<span>{{store.feature}}</span></h6>
+                                            <span class="label label-primary center-block">{{store.action}}</span>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="beautyTab">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h6 class="panel-title">
+                                <span class="title">美妆美发-美丽你的人生</span>
+                                <button type="button" class="btn btn-xs btn-success right" ng-click="goto('beauty')">More</button> 
+                            </h6>
+                        </div>
+                        <div class="panel-body">                
+                            <ul>
+                                <li ng-repeat="store in beautystores" style="float: left;padding: 2px;">
+                                    <div class="profile">
+                                        <div class="thumbnail">
+                                            <a href="#/beauty/{{store.id}}">
+                                                <img ng-if="store.logo2" ng-src="app/img/{{store.userid}}/{{store.logo2}}" alt="{{store.name}}">
+                                                <img ng-if="!store.logo2" ng-src="app/img/{{store.category}}.png" alt="{{store.name}}">
+                                            </a>
+                                        </div>
+                                        <div class="caption">
+                                            <h5>
+                                                <a href="#/beauty/{{store.id}}">{{store.name}}</a>                              
+                                            </h5>
+                                            <p>
+                                                <span class="content-stars-rank content-stars-{{store.hot * 10}}"></span>  
+                                            </p> 
+                                            <h6 class="title">地区:<strong>{{store.town}}</strong><strong>{{store.phone}}</strong></h6>
+                                            <h6 class="title">专注:<span>{{store.feature}}</span></h6>
                                             <span class="label label-primary center-block">{{store.action}}</span>
                                         </div>
                                     </div>

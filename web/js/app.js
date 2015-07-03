@@ -10,6 +10,8 @@ app.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.
                 when('/main', {templateUrl: 'partials/main.html', controller: MainController}).
                 when('/cart', {templateUrl: 'partials/cart.html', controller: CartController}).
+                when('/beauty', {templateUrl: 'partials/beauty-list.html', controller: BeautyController}).
+                when('/beauty/:Id', {templateUrl: 'partials/beauty-detail.html', controller: BeautyDetailController}).
                 when('/cate', {templateUrl: 'partials/cate-list.html', controller: CateController}).
                 when('/cate/:Id', {templateUrl: 'partials/cate-detail.html', controller: CateDetailController}).
                 when('/help', {templateUrl: 'partials/help-list.html', controller: HelpController}).

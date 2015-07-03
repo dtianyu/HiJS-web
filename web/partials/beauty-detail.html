@@ -16,13 +16,14 @@
                 </h4>
                 <h4 class="Pleft8">
                     <span class="content-stars-rank content-stars-{{store.hot}}"></span>
+                    <small>人均：<strong>{{store.pcc}}</strong>元</small>
                 </h4>
-                <h5 class="Pleft8">
+                <h5 class="Pleft8 hidden-xs">
                     地区：{{store.town}}<span class="text-info Pleft8">营业时间：{{store.opentime}}-{{store.closetime}}</span><span ng-if="store.phone" class="Pleft8">电话：{{store.phone}}</span><span ng-if="store.contacter" class="Pleft8">联系人：{{store.contacter}}</span>
                 </h5>
                 <h6 ng-if="store.action" >活动：{{store.action}}</h6>
             </div>
-        </div>           
+        </div>      
         <ul>
             <li ng-repeat="item in store.content">
                 <div class="panel panel-default">
@@ -41,7 +42,7 @@
                         </div>
                         <div class="text">
                             <p><span class="Pleft8">价格:</span><strong>{{item.price}}</strong>元/{{item.unit}}
-                                <button type="button" class="btn btn-primary btn-xs cart-add" ng-click="cart.add(item, 0.0, 0.0)">预约</button>
+                                <button type="button" class="btn btn-primary btn-xs cart-add" ng-click="cart.add(item, store.freightfree, store.freight)">我要</button>
                             </p>                    
                             <p><span class="Pleft8">说明:</span>{{item.itemspec}}</p>
                         </div>
@@ -49,7 +50,7 @@
                 </div>
             </li>
         </ul>
-    </div>    
+    </div>
     <div class="col-md-4"> 
         <div class="nav  nav-pills">
             <div class="navbar-header">
@@ -59,19 +60,19 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#"><i class="cart-logo"></i>我的预约<span class="badge">{{cart.totalQty}}</span></a>
+                </button>   
+                <a class="navbar-brand" href="#"><i class="cart-logo"></i>我的美食<span class="badge">{{cart.totalQty}}</span></a>
             </div>
             <div id ="cart-detail" class="navbar-toggle">
                 <ul class="nav nav-pills nav-stacked">
                     <li class="active"><button type="button" class="btn  btn-xs cart-clear" ng-disabled="cart.isEmpty()" ng-click="cart.clear()">清除</button><a>详细内容</a></li>
-                    <li ng-repeat="item in cart.cartItems">                                                              
-                        <h5>{{item.content}} {{item.price}}元/{{item.unit}}
-                            <button type="button" class="btn btn-primary btn-xs cart-del" ng-click="cart.remove(item)">删除</button>                              
+                    <li class="cart-content" ng-repeat="item in cart.cartItems">                                                
+                        <h5>{{item.content}} {{item.price}}元/{{item.unit}}                                                         
                             <span class="cart-qty">
+                                <button type="button" class="btn btn-primary btn-xs cart-del" ng-click="cart.remove(item)">删除</button>
                                 <a class="less" ng-click="cart.less(item)">-</a>
                                 <span class="badge">{{item.qty}}</span>
-                                <a class="more" ng-click="cart.more(item)">+</a>
+                                <a class="more" ng-click="cart.more(item)">+</a>                                     
                             </span>
                         </h5>                            
                     </li>

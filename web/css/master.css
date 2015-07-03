@@ -337,10 +337,6 @@ li div.profile span.title{
     display: inline-block;
 }
 
-.panel-title span.title{
-    width: 160px;    
-}
-
 .panel-title small{
     padding-left: 20px;
 }
