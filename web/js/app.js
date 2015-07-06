@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-var app = angular.module('jsApp', ['appServices','appDirectives']);
+var app = angular.module('jsApp', ['appServices', 'appDirectives']);
 
 app.config(['$routeProvider', function ($routeProvider) {
         $routeProvider.
@@ -14,6 +14,8 @@ app.config(['$routeProvider', function ($routeProvider) {
                 when('/beauty/:Id', {templateUrl: 'partials/beauty-detail.html', controller: BeautyDetailController}).
                 when('/cate', {templateUrl: 'partials/cate-list.html', controller: CateController}).
                 when('/cate/:Id', {templateUrl: 'partials/cate-detail.html', controller: CateDetailController}).
+                when('/fresh', {templateUrl: 'partials/fresh-list.html', controller: FreshController}).
+                when('/fresh/:Id', {templateUrl: 'partials/fresh-detail.html', controller: FreshDetailController}).
                 when('/help', {templateUrl: 'partials/help-list.html', controller: HelpController}).
                 when('/help/:Id', {templateUrl: 'partials/help-detail.html', controller: HelpDetailController}).
                 otherwise({redirectTo: 'main'});

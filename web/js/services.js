@@ -235,7 +235,8 @@ appServices.factory('Category', function ($resource) {
     return $resource("app/data/:Id.json", {}, {
         cate: {method: "GET", params: {Id: "cateCategory"}, isArray: true},
         help: {method: "GET", params: {Id: "helpCategory"}, isArray: true},
-        beauty: {method: "GET", params: {Id: "beautyCategory"}, isArray: true}
+        beauty: {method: "GET", params: {Id: "beautyCategory"}, isArray: true},
+        fresh: {method: "GET", params: {Id: "freshCategory"}, isArray: true}
     });
 });
 appServices.factory('Filter', function () {
@@ -244,6 +245,12 @@ appServices.factory('Filter', function () {
         filters: [],
         searchText: ''
     };
+});
+appServices.factory('Fresh', function ($resource) {
+    return $resource("app/data/:Id.json", {}, {
+        query: {method: 'GET', params: {Id: 'fresh'}, isArray: true},
+        top: {method: 'GET', params: {Id: 'freshTop'}, isArray: true}
+    });
 });
 appServices.factory('Help', function ($resource) {
     return $resource("app/data/:Id.json", {}, {

@@ -74,6 +74,17 @@ var FilterController = ['$scope', 'Filter', 'Area', function ($scope, Filter, Ar
 
     }];
 
+var MainController = ['$scope', '$location', 'Cate', 'Help', 'Beauty', 'Fresh', function ($scope, $location, Cate, Help, Beauty, Fresh) {
+
+        $scope.goto = function (path) {
+            $location.path(path);
+        };
+        $scope.catestores = Cate.top();
+        $scope.helpstores = Help.top();
+        $scope.beautystores = Beauty.top();
+        $scope.freshstores = Fresh.top();
+    }];
+
 var BeautyController = ['$scope', '$routeParams', '$location', 'Beauty', 'Filter', 'Category', function ($scope, $routeParams, $location, Beauty, Filter, Category) {
 
         $scope.goto = function (path) {
@@ -148,6 +159,42 @@ var CateDetailController = ['$scope', '$routeParams', '$location', 'Cate', 'Cart
 
     }];
 
+var FreshController = ['$scope', '$routeParams', '$location', 'Fresh', 'Filter', 'Category', function ($scope, $routeParams, $location, Fresh, Filter, Category) {
+
+        $scope.goto = function (path) {
+            $location.path(path);
+        };
+
+        $scope.doFilter = Filter;
+        $scope.store;
+        $scope.stores = Fresh.query();
+        if ($routeParams.Id !== undefined) {
+            $scope.store = Fresh.get({Id: $routeParams.Id});
+        }
+        $scope.orderProp = "idx";
+        var storeId = $routeParams.storeId;
+
+        $scope.category = Category.fresh();
+
+    }];
+
+var FreshDetailController = ['$scope', '$routeParams', '$location', 'Fresh', 'Cart', function ($scope, $routeParams, $location, Fresh, Cart) {
+
+        $scope.goto = function (path) {
+            $location.path(path);
+        };
+        $scope.cart = Cart;
+        $scope.store;
+        if ($routeParams.Id !== undefined) {
+            $scope.store = Fresh.get({Id: $routeParams.Id});
+        }
+        var storeId = $routeParams.storeId;
+        $scope.orderProp = "idx";
+        $scope.cart.init();
+        $scope.cart.sum();
+
+    }];
+
 var HelpController = ['$scope', '$routeParams', '$location', 'Help', 'Filter', 'Category', function ($scope, $routeParams, $location, Help, Filter, Category) {
 
         $scope.goto = function (path) {
@@ -182,16 +229,6 @@ var HelpDetailController = ['$scope', '$routeParams', '$location', 'Help', 'Cart
         $scope.cart.init();
         $scope.cart.sum();
 
-    }];
-
-var MainController = ['$scope', '$location', 'Cate', 'Help', 'Beauty', function ($scope, $location, Cate, Help, Beauty) {
-
-        $scope.goto = function (path) {
-            $location.path(path);
-        };
-        $scope.catestores = Cate.top();
-        $scope.helpstores = Help.top();
-        $scope.beautystores = Beauty.top();
     }];
 
 var StoreKindController = ['$scope', 'StoreKind', function ($scope, StoreKind) {

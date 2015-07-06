@@ -12,15 +12,15 @@
                     <span class="Pleft8">
                         <strong>{{store.name}}</strong>                                    
                     </span>
-                    <small class="Pleft8">  地址：{{store.address}}</small>
+                    <small class="Pleft8">地区:{{store.town}}  地址:{{store.address}}</small>
                 </h4>
                 <h4 class="Pleft8">
                     <span class="content-stars-rank content-stars-{{store.hot}}"></span>
                 </h4>
                 <h5 class="Pleft8">
-                    地区：{{store.town}}<span class="text-info Pleft8">营业时间：{{store.opentime}}-{{store.closetime}}</span><span ng-if="store.phone" class="Pleft8">电话：{{store.phone}}</span><span ng-if="store.contacter" class="Pleft8">联系人：{{store.contacter}}</span>
+                    <span class="text-info">营业时间:{{store.opentime}}-{{store.closetime}}</span><span ng-if="store.phone" class="Pleft8 hidden-xs">电话:{{store.phone}}</span><span ng-if="store.contacter" class="Pleft8 hidden-xs">联系人:{{store.contacter}}</span>
                 </h5>
-                <h6 ng-if="store.action" >活动：{{store.action}}</h6>
+                <h6 ng-if="store.action">活动:{{store.action}}</h6>
             </div>
         </div>           
         <ul>
@@ -40,10 +40,10 @@
                             <img ng-if="!item.logo1" ng-src="app/img/{{store.category}}.png" alt="{{item.itemdesc}}"/>
                         </div>
                         <div class="text">
-                            <p><span class="Pleft8">价格:</span><strong>{{item.price}}</strong>元/{{item.unit}}
+                            <p><span>价格:</span><strong>{{item.price}}</strong>元/{{item.unit}}
                                 <button type="button" class="btn btn-primary btn-xs cart-add" ng-click="cart.add(item, 0.0, 0.0)">预约</button>
                             </p>                    
-                            <p><span class="Pleft8">说明:</span>{{item.itemspec}}</p>
+                            <p><span>说明:</span>{{item.itemspec}}</p>
                         </div>
                     </div>
                 </div>
