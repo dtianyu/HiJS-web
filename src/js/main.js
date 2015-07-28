@@ -14,14 +14,15 @@ $(document).ready(function () {
         $(this).removeClass("dropdown open").addClass("dropdown");
     });
     //回到顶部
-    window.onscroll = function () {   
-        if (window.scrollY > 200){
+    window.onscroll = function () {
+        if (window.scrollY > 200) {
             $('#backtop').removeClass('nodisplay');
-        }else{
+        } else {
             $('#backtop').addClass('nodisplay');
-        };
+        }
+        ;
     };
- 
+
     //$("body").load(initMap());//载入地图
 //    var t = 120;
 //    var u = 119;
